@@ -26,7 +26,7 @@ layouts:
   - quadrant
 
 # Plugin Metadata
-name: "Prayer Times"
+name: "Islamic Prayer Times"
 description: "Display Islamic prayer times for your location using Aladhan API"
 author: "Your Name"
 version: "1.0.0"
