@@ -1,53 +1,77 @@
-# Custom Form Fields Configuration
+# Prayer Times Plugin - Custom Form Fields
 # 
-# This file defines the user-facing form fields that appear in the TRMNL
-# plugin configuration interface. Users enter values here which become
-# available in your templates via:
+# These fields are shown to users when they configure the Prayer Times plugin.
+# Values become available in templates via:
 #   {{ trmnl.plugin_settings.custom_fields_values.field_name }}
 
-# Field Types:
-# - text: Single line text input
-# - long_text: Multi-line text area
-# - select: Dropdown with predefined options
-# - checkbox: Boolean toggle
-# - number: Numeric input
-# - url: URL input with validation
-# - email: Email input with validation
-
-# Example text field
-- key: "api_key"
-  type: "text"
-  label: "API Key"
-  placeholder: "Enter your API key"
+# Latitude: User's geographic latitude
+- key: "latitude"
+  type: "number"
+  label: "Latitude"
+  placeholder: "40.7128"
   required: true
-  description: "Required for authenticating with the data service"
+  description: "Your location's latitude (e.g., 40.7128 for New York). Find it at https://www.gps-coordinates.net/"
 
-# Example select field
-- key: "data_source"
+# Longitude: User's geographic longitude
+- key: "longitude"
+  type: "number"
+  label: "Longitude"
+  placeholder: "-74.0060"
+  required: true
+  description: "Your location's longitude (e.g., -74.0060 for New York)"
+
+# Calculation Method: Which Islamic calculation method to use
+- key: "calculation_method"
   type: "select"
-  label: "Data Source"
+  label: "Calculation Method"
   required: true
   options:
-    - label: "Source A"
-      value: "source_a"
-    - label: "Source B"
-      value: "source_b"
-    - label: "Source C"
-      value: "source_c"
-  description: "Select which data source to display"
+    - label: "Muslim World League (MWL) - Recommended"
+      value: "3"
+    - label: "Islamic Society of North America (ISNA)"
+      value: "2"
+    - label: "Ummah Al-Qura Method"
+      value: "1"
+    - label: "Egyptian General Authority"
+      value: "5"
+    - label: "Karachi Method"
+      value: "8"
+    - label: "Kuwait"
+      value: "10"
+    - label: "Qatar"
+      value: "9"
+    - label: "Morocco"
+      value: "11"
+    - label: "Bahrain"
+      value: "12"
+  description: "Method used to calculate prayer times. Muslim World League (MWL) is widely used globally."
 
-# Example URL field
-- key: "webhook_url"
-  type: "url"
-  label: "Webhook URL"
-  placeholder: "https://example.com/webhook"
-  required: false
-  description: "Optional: Receive updates via webhook (if using webhook strategy)"
+# Time Format: 12-hour or 24-hour format
+- key: "time_format"
+  type: "select"
+  label: "Time Format"
+  required: true
+  options:
+    - label: "24-hour (e.g., 14:30)"
+      value: "24h"
+    - label: "12-hour (e.g., 2:30 PM)"
+      value: "12h"
+  description: "How to display prayer times"
 
-# Example checkbox field
-- key: "show_details"
+# Show Hijri Date: Display Islamic calendar date
+- key: "show_hijri_date"
   type: "checkbox"
-  label: "Show Additional Details"
+  label: "Show Hijri Date"
+  description: "Display the Islamic calendar date below prayer times (if space allows)"
+
+# Custom Title: Allow users to rename the plugin display
+- key: "custom_title"
+  type: "text"
+  label: "Custom Title (Optional)"
+  placeholder: "Prayer Times"
+  required: false
+  description: "Leave empty to use default 'Prayer Times' title"
+
   required: false
   description: "Display extra information in the layout"
 

@@ -1,89 +1,60 @@
 {% comment %}
-  ============================================================================
-  FULL.LIQUID - Full-screen Layout Template
-  ============================================================================
-  Use this template for displaying content across the entire TRMNL screen.
-  
-  Best For:
-  - Detailed information displays
-  - Main data presentation
-  - Full-screen widgets
-  
-  Device Sizes: Works across all devices (sm, md, lg)
-  Padding: p--2 (standard)
-  
-  Structure:
-  - Main content area with flex: 1 for vertical centering
-  - Title bar at bottom for branding
-  - Error state fallback for unconfigured plugins
-  ============================================================================
+  FULL LAYOUT - Prayer Times Display
+  Shows all 5 prayers with date information
 {% endcomment %}
 
+{% assign today = data[0] %}
+{% assign timings = today.timings %}
+{% assign gregorian = today.date.gregorian %}
+{% assign hijri = today.date.hijri %}
+{% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
+{% assign show_hijri = trmnl.plugin_settings.custom_fields_values.show_hijri_date %}
+
 <div class="layout">
-  {% comment %} Check if data is available {% endcomment %}
-  {% if has_data %}
-  
-  <div class="flex flex--col gap--medium h--full">
-    {% comment %} Main content area - centered vertically {% endcomment %}
-    <div class="flex flex--center-x flex--center-y" style="flex: 1;">
-      <div class="text--center">
-        {% comment %} 
-          Example: Display your primary data here
-          Replace with actual data from your data source
-          
-          Tip: Use data-value-fit for long headlines that need to scale
-          Tip: Use value--tnums for precise numeric alignment
-        {% endcomment %}
-        <div class="value value--large md:value--xxlarge lg:value--xxxlarge" data-value-fit="true" data-value-fit-max-height="220">
-          42
+  {% if today and timings.Fajr %}
+    <div class="flex flex--col gap--medium h--full p--2">
+      {% comment %} Date Section {% endcomment %}
+      <div class="flex flex--row gap--medium flex--center-x">
+        <div class="flex flex--col gap--xsmall text--center flex-1">
+          <span class="label label--small">{{ gregorian.weekday.en }}</span>
+          <span class="title title--medium">{{ gregorian.day }} {{ gregorian.month.en }}</span>
         </div>
-        <div class="title title--small md:title--medium lg:title--large">
-          Example Value
+        {% if show_hijri == 'true' %}
+        <div class="divider"></div>
+        <div class="flex flex--col gap--xsmall text--center flex-1">
+          <span class="label label--small">Islamic Date</span>
+          <span class="description">{{ hijri.day }} {{ hijri.month.en }}</span>
         </div>
-        <div class="description md:label" data-clamp="2">
-          This is a template example with better best practices
+        {% endif %}
+      </div>
+
+      {% comment %} Prayer Times Grid {% endcomment %}
+      <div class="grid grid--cols-2 gap--medium gap--large">
+        <div class="text--center">
+          <span class="label md:label label--small">Fajr</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Fajr }}</div>
+        </div>
+        <div class="text--center">
+          <span class="label md:label label--small">Dhuhr</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Dhuhr }}</div>
+        </div>
+        <div class="text--center">
+          <span class="label md:label label--small">Asr</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Asr }}</div>
+        </div>
+        <div class="text--center">
+          <span class="label md:label label--small">Maghrib</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Maghrib }}</div>
+        </div>
+        <div class="col--span-2 text--center">
+          <span class="label md:label label--small">Isha</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Isha }}</div>
         </div>
       </div>
     </div>
-
-    {% comment %} Visual separator using modern divider component {% endcomment %}
-    <div class="divider"></div>
-
-    {% comment %} Optional secondary content area with improved styling {% endcomment %}
-    <div class="grid grid--cols-2 gap--medium md:gap--large">
-      <div class="item">
-        <div class="meta"></div>
-        <div class="content text--center">
-          <div class="value value--medium md:value--large">📊</div>
-          <div class="label">Stat 1</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="meta"></div>
-        <div class="content text--center">
-          <div class="value value--medium md:value--large">📈</div>
-          <div class="label">Stat 2</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   {% else %}
-  
-  {% comment %} Display error state when plugin is unconfigured {% endcomment %}
-  <div class="flex flex--col flex--center-x flex--center-y gap--medium h--full">
-    <div class="value value--large md:value--xlarge text--center">⚙️</div>
-    <div class="title title--medium md:title--large text--center">Setup Required</div>
-    <div class="description md:title md:title--small text--center">
-      Please configure this plugin with your API key and settings to begin.
-    </div>
-  </div>
-  
+    {% render "shared", template_name: "error_state", size: "full" %}
   {% endif %}
 </div>
 
-{% comment %} Title bar at bottom {% endcomment %}
-<div class="title_bar">
-  <span class="title md:title--large">Example Plugin</span>
-  <span class="instance">Full Layout</span>
-</div>
+{% render "shared", template_name: "title_bar", custom_title: custom_title %}

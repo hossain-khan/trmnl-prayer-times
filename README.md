@@ -1,36 +1,37 @@
-# TRMNL Plugin Template
+# 🕌 Prayer Times for TRMNL
 
-A complete, production-ready starter template for building custom plugins for [TRMNL](https://trmnl.com) devices. This template provides everything you need to create, test, and deploy a TRMNL plugin.
+Display accurate Islamic prayer times on your TRMNL e-ink device, powered by the reliable [Aladhan API](https://aladhan.com/). Shows Fajr, Dhuhr, Asr, Maghrib, and Isha prayer times in multiple responsive layouts.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
+- A TRMNL device
+- Your geographic coordinates (latitude/longitude)
 - Understanding of [TRMNL Framework](https://trmnl.com/framework)
-- Familiarity with [Liquid templating](https://shopify.github.io/liquid/)
-- A backend service for data fetching (for polling strategy)
 
 ### Getting Started
 
-1. **Clone this repository** as your starting point:
-   ```bash
-   git clone https://github.com/your-username/your-plugin-name.git
-   cd your-plugin-name
-   ```
+1. **Add Prayer Times Plugin to TRMNL**:
+   - Go to [TRMNL App](https://app.trmnl.com)
+   - Search for "Prayer Times" plugin
+   - Click "Add Plugin"
 
-2. **Customize the template files**:
-   - Update `settings.yml` with your plugin configuration
-   - Update `custom-fields.yml` with your form fields
-   - Edit templates in `templates/` folder to your design
+2. **Configure Your Location**:
+   - Get your latitude and longitude (e.g., Google Maps or [GPS coordinates finder](https://www.gps-coordinates.net/))
+   - Enter your coordinates in the plugin settings
+   - Choose calculation method (Islamic Society of North America recommended)
+   - Select time display format (24-hour or 12-hour)
 
-3. **Update the copilot instructions**:
-   - Edit `.github/copilot-instructions.md` with your project details
-   - Follow the [Template Usage Guide](https://github.com/hossain-khan/trmnl-plugin-template/blob/main/.github/TEMPLATE_USAGE.md)
+3. **Choose Display Layout**:
+   - **Full**: All prayers with Hijri date
+   - **Half Horizontal**: Prayer times side-by-side
+   - **Half Vertical**: Current/next prayer emphasized
+   - **Quadrant**: Most important prayer only (compact)
 
-4. **Test in TRMNL Markup Editor**:
-   - Copy a template to the [TRMNL Markup Editor](https://editor.trmnl.com)
-   - Preview across different device sizes
-   - Test with sample data
+4. **Save & Done**:
+   - Prayer times auto-update daily with accurate times for your location
+   - Displays all 5 religious prayer times: Fajr, Dhuhr, Asr, Maghrib, Isha
 
 ## 📁 Project Structure
 
@@ -58,34 +59,35 @@ your-plugin-name/
 
 ### Core Templates
 
-- **`shared.liquid`**: Reusable components and utility templates
-  - Error state component
-  - Data display components
-  - Metric cards
-  - Status badges
+- **`shared.liquid`**: Reusable prayer times components
+  - Error state for unconfigured plugin
+  - Prayer card component
+  - Prayer row component
+  - Hijri date display
   - Title bar template
 
-- **`full.liquid`**: Full-screen plugin display
-  - Best for main data presentation
-  - Padding: `p--2` (standard)
-  - Includes optional secondary content area
+- **`full.liquid`**: Full-screen prayer times display
+  - All 5 prayers in 2x3 grid layout
+  - Gregorian & Hijri dates (conditional)
+  - Tabular alignment for precise time display
+  - Best for dedicated prayer time display
 
 - **`half_horizontal.liquid`**: Side-by-side layout
-  - Best for comparative displays
-  - Main content on left/right side
-  - Responsive: switches to vertical on portrait
-  - Constrained secondary content
+  - Main prayers (Fajr, Dhuhr, Asr) on left
+  - Evening prayers (Maghrib, Isha) on right
+  - Responsive: switches to stacked on portrait
+  - Good for shared TRMNL space
 
-- **`half_vertical.liquid`**: Stacked layout
-  - Best for primary + secondary content
-  - Primary content fills space
-  - Secondary content at bottom
-  - Compact spacing
+- **`half_vertical.liquid`**: Vertical list layout
+  - All 5 prayers in list format
+  - Name and time side-by-side
+  - Dividers between each prayer
+  - Compact height usage
 
 - **`quadrant.liquid`**: Quarter-size compact display
-  - Minimal information only
-  - Tight padding (`p--1`)
-  - Every pixel counts
+  - Shows Fajr (first prayer) only
+  - Minimal space (tight padding)
+  - Perfect for dashboard integration
 
 ### Layout Previews
 
@@ -139,79 +141,86 @@ Access in templates:
 
 ## 🎯 Key Features
 
+### Accurate Prayer Times
+- Uses the reliable **Aladhan API** (no key required)
+- Muslim World League calculation method (recommended globally)
+- Support for 20+ calculation methods
+- Multiple time format options (24-hour / 12-hour)
+
 ### Responsive Design
-- Supports 4+ device sizes (600px - 1024px+ widths)
-- Breakpoint system: `sm:`, `md:`, `lg:`
-- Portrait orientation support: `portrait:`
-- Bit-depth variants: `1bit:`, `2bit:`, `4bit:`, `8bit:`
+- 4 layout options for different display configurations
+- Supports all TRMNL devices and BYOD displays
+- Breakpoints: `sm:` (600px), `md:` (800px), `lg:` (1024px+)
+- Portrait mode responsive fallbacks
 
-### TRMNL Framework Utilities
-All templates use framework utilities for consistency:
+### Customizable
+- User-configurable latitude/longitude
+- Choice of calculation methods
+- Optional Hijri (Islamic) date display
+- Custom plugin title
+- Multiple time format options
 
-**Layout**: `flex`, `flex--row`, `flex--col`, `grid`, `gap--*`, `h--full`
-**Typography**: `title`, `value`, `label`, `description`
-**Visual**: `bg--white`, `rounded`, `outline`, `text--center`
+### E-ink Optimized
+- Clean, high-contrast design
+- Grayscale and monochrome compatible
+- Smooth rendering on all bit-depths (1, 2, 4, 8-bit)
+- Optimized typography for readability
 
-Example:
-```liquid
-<div class="flex flex--row gap--medium h--full">
-  <span class="value value--large md:value--xlarge">42</span>
-  <span class="title md:title--large">Example</span>
-</div>
+## ⚙️ Configuration
+
+### Settings (`settings.yml`)
+The plugin uses the **Aladhan API** endpoint
+```yaml
+polling_url: "https://api.aladhan.com/v1/calendar?latitude={latitude}&longitude={longitude}&method={method}&month={month}&year={year}"
+refresh_frequency: 1440    # Once daily (24 hours)
 ```
 
-### Error States
-All templates include error state fallbacks for unconfigured plugins:
-
-```liquid
-{% if has_data %}
-  <!-- Show plugin content -->
-{% else %}
-  <!-- Show helpful error message -->
-  {% render "shared", template_name: "error_state", size: "full" %}
-{% endif %}
-```
-
-### Reusable Components
-`shared.liquid` provides ready-to-use components:
-
-```liquid
-{% render "shared", template_name: "data_display", value: "42", label: "Value" %}
-{% render "shared", template_name: "metric_card", number: "100", label: "Metric" %}
-{% render "shared", template_name: "status_badge", status: "success", message: "All good!" %}
-```
+### Custom Fields (`custom-fields.yml`)
+Users configure:
+- **Latitude**: Geographic latitude (required)
+- **Longitude**: Geographic longitude (required)
+- **Calculation Method**: Islamic calculation method (required)
+  - Muslim World League (MWL) - Recommended
+  - Islamic Society of North America (ISNA)
+  - And 18+ other methods
+- **Time Format**: 24-hour or 12-hour display
+- **Show Hijri Date**: Optional Islamic date display
+- **Custom Title**: Optional custom plugin name
 
 ## 🔄 Data Flow
 
-### Polling Strategy (Default)
+### Prayer Times from Aladhan API
 
 ```
-1. User configures plugin in TRMNL
-2. TRMNL sends GET request to polling_url at refresh_frequency
-3. Your backend fetches/generates data
-4. Backend returns JSON with template variables
-5. TRMNL merges JSON into templates
-6. Rendered content sent to e-ink display
+1. User configures latitude/longitude in TRMNL plugin settings
+2. TRMNL sends daily request to Aladhan API with user coordinates
+3. Aladhan returns JSON with 5 prayer times:
+   - Fajr (pre-dawn)
+   - Dhuhr (noon)
+   - Asr (afternoon)
+   - Maghrib (sunset)
+   - Isha (night)
+4. TRMNL renders prayer times in chosen layout
+5. Display refreshes daily at configured time
 ```
 
-Your backend should return JSON like:
-
+Example Aladhan API Response:
 ```json
 {
-  "has_data": true,
-  "title": "Example Value",
-  "value": 42,
-  "status": "success",
-  "metadata": "Last updated: 2 minutes ago"
+  "data": [{
+    "timings": {
+      "Fajr": "05:45",
+      "Dhuhr": "12:30",
+      "Asr": "15:45",
+      "Maghrib": "17:45",
+      "Isha": "19:15"
+    },
+    "date": {
+      "gregorian": {...},
+      "hijri": {...}
+    }
+  }]
 }
-```
-
-Template accesses via:
-```liquid
-{{ title }}
-{{ value }}
-{{ status }}
-{{ metadata }}
 ```
 
 ## 🧪 Testing
@@ -219,170 +228,160 @@ Template accesses via:
 ### Using TRMNL Markup Editor
 
 1. Go to [editor.trmnl.com](https://editor.trmnl.com)
-2. Copy your template code (e.g., from `full.liquid`)
-3. Add sample JSON data under "Data" section
-4. Preview across device sizes using device selector
-5. Check responsive behavior
+2. Copy your prayer times template code
+3. Add sample JSON data from `assets/demo/sample-data.json`
+4. Preview across all device sizes
+5. Verify prayer times display correctly
+
+### Prayer Times Test Data
+
+The `assets/demo/sample-data.json` contains sample prayer times for New York (Feb 18, 2026):
+- **Fajr**: 05:45 - Early morning
+- **Dhuhr**: 12:30 - Noon
+- **Asr**: 15:45 - Afternoon
+- **Maghrib**: 17:45 - Sunset
+- **Isha**: 19:15 - Evening
 
 ### Test Scenarios
 
 ✅ **Happy Path**
-- Valid config with complete data
-- Data displays correctly in all layouts
-- Responsive across device sizes
+- Valid coordinates (latitude/longitude)
+- All 5 prayer times display in correct layouts
+- Responsive across sm, md, lg devices
+- Time formatting works (24h/12h)
 
 ⚠️ **Edge Cases**
-- Empty/minimal data
-- Long text (100+ characters)
-- Special characters & unicode
-- Null/undefined values
+- Very high latitude (polar regions - prayer times may be unusual)
+- Hijri date display enabled/disabled
+- Different calculation methods
+- Custom title override
 
 ❌ **Error States**
-- No configuration
-- Invalid configuration
-- Failed data fetch
-- Malformed data
+- No coordinates configured
+- Invalid coordinates
+- Missing custom fields
 
 ### Manual Checklist
 
-- [ ] Test all layouts (full, half_horizontal, half_vertical, quadrant)
+- [ ] Test all 4 layouts (full, half_horizontal, half_vertical, quadrant)
 - [ ] Verify on all device sizes (sm, md, lg)
-- [ ] Test with minimal data
-- [ ] Test with maximum data
-- [ ] Verify text truncation
-- [ ] Check error states
-- [ ] Test portrait mode
-- [ ] Verify bit-depth variants
-- [ ] Check accessibility
+- [ ] Test with sample data from assets/demo
+- [ ] Try all calculation methods
+- [ ] Test 24-hour and 12-hour formats
+- [ ] Test with/without Hijri date
+- [ ] Test custom title feature
+- [ ] Verify error state displays
+- [ ] Test portrait mode responsive
+- [ ] Check tabular number alignment
 
 ## 📚 Development Resources
 
 ### TRMNL Documentation
-- [Framework Design Docs](https://trmnl.com/framework) - Complete design system reference
+- [TRMNL Framework](https://trmnl.com/framework) - Design system and utilities
 - [Device Models API](https://trmnl.com/api/models) - Device specifications
 - [Plugin Guides](https://help.trmnl.com/en/collections/7820559-plugin-guides) - How-to guides
-- [Liquid 101](https://help.trmnl.com/en/articles/10671186-liquid-101) - Liquid basics
-- [Advanced Liquid](https://help.trmnl.com/en/articles/10693981-advanced-liquid) - Advanced techniques
+- [Liquid 101](https://help.trmnl.com/en/articles/10671186-liquid-101) - Template language basics
 
-### Responsive Breakpoints
+### Prayer Times Resources
+- [Aladhan API Docs](https://aladhan.com/developers) - Free prayer times API
+- [Prayer Times Methods](https://aladhan.com/prayer-times-calculation) - Calculation method details
+- [Islamic Calendar](https://en.wikipedia.org/wiki/Islamic_calendar) - Hijri calendar info
 
-| Device | Size | Width | Display | Breakpoint |
-|--------|------|-------|---------|-----------|
-| TRMNL X | Large | 1040px | 4-bit (16 shades) | lg: |
-| TRMNL OG V2 | Medium | 800px | 2-bit (4 shades) | md: |
-| TRMNL OG | Medium | 800px | 1-bit (2 shades) | md: |
-| Kindle 2024 | Small | 800px | 8-bit (256 shades) | sm: |
-| BYOD Devices | Various | 600-1200px | Various | sm:/md:/lg: |
+### Reference: Device Specifications
 
-### Framework Utilities Quick Reference
+| Device | Width | Height | Display | Breakpoint |
+|--------|-------|--------|---------|-----------|
+| TRMNL X | 1040px | 780px | 4-bit (16 shades) | lg: |
+| TRMNL OG V2 | 800px | 480px | 2-bit (4 shades) | md: |
+| TRMNL OG | 800px | 480px | 1-bit (2 shades) | md: |
+| Kindle 2024 | 800px | 480px | 8-bit (256 shades) | sm: |
+
+### Framework Quick Reference
 
 ```liquid
-<!-- Layout -->
-<div class="flex flex--row flex--center-x gap--medium h--full">
+<!-- Prayer Time Display -->
+<div class="flex flex--col gap--small">
+  <span class="label">Fajr</span>
+  <span class="value value--large value--tnums">05:45</span>
+</div>
 
-<!-- Typography -->
-<span class="value value--small md:value--large lg:value--xlarge">42</span>
-<span class="title title--medium">Heading</span>
-<span class="label">Label</span>
-<span class="description">Description text</span>
+<!-- Prayer Grid (2 columns) -->
+<div class="grid grid--cols-2 gap--medium">
+  <!-- Each prayer card -->
+</div>
 
-<!-- Spacing -->
-<div class="p--2 mb--small gap--medium">
+<!-- Responsive Divider -->
+<div class="divider"></div>
 
-<!-- Visual -->
-<div class="bg--white rounded outline">
-<img src="..." class="image image--contain image-dither">
+<!-- Date Display -->
+<div class="flex flex--col text--center">
+  <span class="label">Tuesday</span>
+  <span class="title">18 February</span>
+</div>
 
-<!-- Responsive -->
-<div class="flex flex--col portrait:flex--row md:gap--large">
+<!-- Error State -->
+<div class="flex flex--col flex--center-x flex--center-y h--full">
+  <div class="value">🕌</div>
+  <div class="title">Configure Location</div>
+</div>
 ```
 
 ## 🐛 Common Issues & Solutions
 
-### Layout Breaking on Different Devices
-- Test all 4 device sizes in TRMNL Markup Editor
-- Use responsive breakpoints consistently
-- Avoid complex CSS - use framework utilities instead
+### Prayer Times Not Displaying
+- **Problem**: "Configure Location" error persists
+- **Solution**: Verify latitude/longitude are valid numbers with decimals (e.g., 40.7128, -74.006)
 
-### Text Overflow
-- Use `data-clamp="2"` to limit lines
-- Set `max-width` on text containers
-- Test with long sample data
+### Wrong Prayer Times
+- **Problem**: Times don't match local prayer times
+- **Solution**: 
+  1. Verify latitude/longitude are correct ([GPS Coordinates Finder](https://www.gps-coordinates.net/))
+  2. Check calculation method selected (Muslim World League is recommended globally)
+  3. Verify timezone settings in TRMNL
 
-### Images Not Displaying
-- Always use `object-fit: contain`
-- Use `image--contain` class
-- Ensure URLs are HTTPS
-- Check actual display with `image-dither`
+### Time Format Not Changing
+- **Problem**: Still showing 24-hour format when set to 12-hour
+- **Solution**: 
+  1. Update settings.yml to use time format variable
+  2. Re-upload templates to TRMNL
+  3. Clear plugin cache/refresh device
 
-### Missing Error States
-- Always check `if has_data` before rendering
-- Provide helpful error messages
-- Test unconfigured state
+### Hijri Date Not Showing
+- **Problem**: Islamic date not displayed even when enabled
+- **Solution**:
+  1. Verify `show_hijri_date` is set to `true` in settings
+  2. Check full.liquid template has hijri date rendering logic
+  3. Ensure sample data includes hijri field from Aladhan
 
-## 📝 Customization Checklist
-
-When creating your plugin:
-
-- [ ] Customize `.github/copilot-instructions.md` with your project details
-- [ ] Update `settings.yml` with your endpoint and configuration
-- [ ] Update `custom-fields.yml` with your form fields
-- [ ] Edit all 5 template files (`full.liquid`, etc.)
-- [ ] Create your asset files (icons, demo images)
-- [ ] Update this `README.md` with project-specific info
-- [ ] Test in TRMNL Markup Editor with sample data
-- [ ] Deploy your backend API
-- [ ] Test with real data before publishing
-
-## 🚢 Deployment
-
-### Publishing to TRMNL
-
-1. Create a plugin recipe in [TRMNL Dashboard](https://app.trmnl.com)
-2. Upload template files:
-   - All 5 `.liquid` files
-   - Icons and assets
-3. Configure settings.yml and custom-fields.yml
-4. Add description, screenshots, and documentation
-5. Submit for review
-
-### Backend Deployment
-
-Deploy your API endpoint somewhere accessible:
-- Cloudflare Workers
-- Node.js server
-- Python server
-- Serverless (Lambda, Cloud Functions, etc.)
-
-Ensure:
-- ✅ HTTPS only
-- ✅ Returns valid JSON
-- ✅ Responds in <3 seconds
-- ✅ Error handling included
-
-## 📄 License
-
-This template is provided under the MIT License - see [LICENSE](LICENSE) for details.
-
-## 🤝 Contributing
-
-Improvements and contributions welcome! If you:
-- Find better patterns
-- Improve documentation
-- Fix bugs
-- Add features
-
-Please open an issue or pull request.
+### Layout Issues on Specific Device
+- **Problem**: Layout breaks on TRMNL OG but works on TRMNL X
+- **Solution**:
+  1. Test in TRMNL Markup Editor with correct device size
+  2. Verify breakpoint usage (md:, lg: prefixes)
+  3. Check portrait mode responsive fallbacks
 
 ## 📞 Getting Help
 
-- Check the [TRMNL Framework docs](https://trmnl.com/framework)
-- Review the [copilot-instructions.md](.github/copilot-instructions.md)
-- Check [TRMNL Help Center](https://help.trmnl.com)
-- Open an issue in this repository
+- **TRMNL Documentation**: [help.trmnl.com](https://help.trmnl.com)
+- **Aladhan API**: [aladhan.com/developers](https://aladhan.com/developers)
+- **TRMNL Framework**: [trmnl.com/framework](https://trmnl.com/framework)
+- **GitHub Issues**: Open an issue in this repository
+
+## 🤝 Contributing
+
+Improvements, bug fixes, and feedback welcome!
+
+- Found a display issue? Open an issue
+- Have a better layout idea? Submit a PR
+- Want to add calculation method examples? Contribute!
+- Translations? Help expand to other languages!
+
+## 📄 License
+
+This plugin is provided under the MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**Happy building! 🎉**
+**Happy praying! 🙏**
 
-For questions about the template, see [TEMPLATE_USAGE.md](.github/TEMPLATE_USAGE.md).
+Last Updated: February 18, 2026

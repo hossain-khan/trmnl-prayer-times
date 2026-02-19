@@ -1,10 +1,50 @@
 {
-  "has_data": true,
-  "title": "Example Plugin",
-  "value": 42,
-  "status": "success",
-  "metadata": "Last updated: 2 minutes ago",
-  "detail_1": "100",
-  "detail_2": "50",
-  "detail_3": "75"
+  "code": 200,
+  "status": "OK",
+  "data": [
+    {
+      "timings": {
+        "Fajr": "05:45",
+        "Sunrise": "07:15",
+        "Dhuhr": "12:30",
+        "Asr": "15:45",
+        "Sunset": "17:42",
+        "Maghrib": "17:45",
+        "Isha": "19:15"
+      },
+      "date": {
+        "readable": "18 Feb 2026",
+        "gregorian": {
+          "date": "18/02/2026",
+          "day": "18",
+          "weekday": {
+            "en": "Tuesday"
+          },
+          "month": {
+            "number": 2,
+            "en": "February"
+          },
+          "year": "2026"
+        },
+        "hijri": {
+          "date": "20/08/1447",
+          "day": "20",
+          "month": {
+            "number": 8,
+            "en": "Sha'ban"
+          },
+          "year": "1447"
+        }
+      },
+      "meta": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "timezone": "America/New_York",
+        "method": {
+          "id": 3,
+          "name": "Muslim World League"
+        }
+      }
+    }
+  ]
 }

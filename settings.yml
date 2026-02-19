@@ -1,28 +1,23 @@
-# Plugin Configuration
+# Prayer Times Plugin Configuration
 # 
-# This file configures how your TRMNL plugin behaves:
-# - How data is fetched (polling_url, webhook, static)
-# - How often the display refreshes (refresh_frequency)
-# - Which layouts are available
-# - Plugin metadata
+# This file configures the Prayer Times plugin for TRMNL devices
+# No backend needed - TRMNL calls Aladhan API directly
 
 # Strategy: How to fetch data
-# Options: "polling" (TRMNL fetches), "webhook" (you push), "static" (hardcoded)
+# Using polling to fetch prayer times daily from Aladhan API
 strategy: "polling"
 
-# Polling URL: Endpoint TRMNL calls to fetch data (required for polling strategy)
-# TRMNL will make GET requests at refresh_frequency intervals
-# Response should be JSON with your template variables
-polling_url: "https://your-api.example.com/plugin/data"
+# Aladhan API Endpoint: Fetch monthly prayer times
+# Format: /calendar?latitude={lat}&longitude={lon}&method={method}&month={month}&year={year}
+# Note: TRMNL will substitute {month} and {year} at runtime
+polling_url: "https://api.aladhan.com/v1/calendar?latitude={latitude}&longitude={longitude}&method={method}&month={month}&year={year}"
 
-# Refresh Frequency: How often to fetch data (in minutes)
-# Range: 1-1440 minutes (1 minute to 24 hours)
-# Lower = more frequent updates, higher = less battery drain
-refresh_frequency: 15
+# Refresh Frequency: How often to fetch prayer times (in minutes)
+# Set to 1440 (24 hours) to refresh daily
+# Prayer times change once per day, so daily refresh is optimal
+refresh_frequency: 1440
 
-# Available Layouts: Which template layouts this plugin supports
-# All plugins should provide at least the 'full' layout
-# Optional layouts: half_horizontal, half_vertical, quadrant
+# Available Layouts: Which layouts this plugin supports
 layouts:
   - full
   - half_horizontal
@@ -30,24 +25,62 @@ layouts:
   - quadrant
 
 # Plugin Metadata
-name: "Example Plugin"
-description: "A template plugin for TRMNL devices"
+name: "Prayer Times"
+description: "Display Islamic prayer times for your location using Aladhan API"
 author: "Your Name"
 version: "1.0.0"
 
-# Tap Action: URL to open when user taps plugin (optional)
-# Leave empty or remove if not needed
-tap_action_url: ""
+# Tap Action: Open Aladhan website for more prayer info (optional)
+tap_action_url: "https://aladhan.com"
 
 # Developer Notes:
 # 
-# 1. POLLING STRATEGY (used in this template)
-#    - TRMNL sends GET requests to polling_url at refresh_frequency intervals
-#    - Your backend should return JSON with template variables
-#    - Example response:
-#    {
-#      "title": "Current Value",
-#      "value": 42,
+# ALADHAN API PARAMETERS:
+# - latitude: User's latitude (configured via custom field)
+# - longitude: User's longitude (configured via custom field)
+# - method: Calculation method (configured via custom field)
+#   1 = Ummah Al-Qura Method
+#   2 = Islamic Society of North America (ISNA)
+#   3 = Muslim World League (MWL) [RECOMMENDED]
+#   4 = Umm Al-Qura University
+#   5 = Egyptian General Authority
+#   7 = Al Kawther
+#   8 = Karachi Method
+#   9 = Qatar
+#   10 = Kuwait
+#   11 = Morocco
+#   12 = Bahrain
+#   13 = Individual Tuning
+#   14 = JAKIM Malaysia
+#   15 = ISRA Malaysia
+#   16 = MUIS Singapore
+#   17 = ABBANOOR Algeria
+#   19 = DIYANET Turkey
+#   20 = FRANCE
+#   21 = SINGAPORE
+#   22 = HONG KONG
+#   23 = MOUSSANADA ALGERIE
+#   24 = MOUSSANADA UNION ISLAND
+#
+# RESPONSE FORMAT:
+# {
+#   "data": [
+#     {
+#       "date": { "gregorian": "2024-02-18", "hijri": "1445-08-09" },
+#       "timings": {
+#         "Fajr": "2024-02-18 05:45:00",
+#         "Sunrise": "2024-02-18 07:15:00",
+#         "Dhuhr": "2024-02-18 12:30:00",
+#         "Asr": "2024-02-18 15:45:00",
+#         "Sunset": "2024-02-18 17:42:00",
+#         "Maghrib": "2024-02-18 17:45:00",
+#         "Isha": "2024-02-18 19:15:00"
+#       },
+#       "meta": { "latitude": 40.7128, "longitude": -74.0060 }
+#     }
+#   ]
+# }
+
 #      "has_data": true,
 #      "status": "success"
 #    }
