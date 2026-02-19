@@ -55,6 +55,31 @@
 {% endtemplate %}
 
 {% comment %}
+  FORMAT TIME - Convert 24-hour time to 12-hour or 24-hour format
+  Parameters: time (e.g., "14:30"), format ("12h" or "24h")
+  Returns: Formatted time string (e.g., "2:30 PM" or "14:30")
+{% endcomment %}
+{% template format_time %}
+{%- if format == '12h' -%}
+  {%- assign parts = time | split: ':' -%}
+  {%- assign hour = parts[0] | plus: 0 -%}
+  {%- assign minute = parts[1] -%}
+  {%- assign period = 'AM' -%}
+  {%- if hour >= 12 -%}
+    {%- assign period = 'PM' -%}
+    {%- if hour > 12 -%}
+      {%- assign hour = hour | minus: 12 -%}
+    {%- endif -%}
+  {%- elsif hour == 0 -%}
+    {%- assign hour = 12 -%}
+  {%- endif -%}
+  {{- hour }}:{{ minute }} {{ period -}}
+{%- else -%}
+  {{- time -}}
+{%- endif -%}
+{% endtemplate %}
+
+{% comment %}
   HIJRI DATE BADGE - Display Islamic calendar date
 {% endcomment %}
 {% template hijri_date %}
