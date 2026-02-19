@@ -13,9 +13,9 @@
 
 <div class="layout">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--row flex--wrap gap--medium p--1" style="justify-content: center;">
+    <div class="flex flex--row flex--wrap flex--center-x gap--medium p--1">
       {% comment %} Date Section - Full width at top {% endcomment %}
-      <div class="flex flex--col gap--xsmall text--center p--1" style="flex: 0 0 100%; border-bottom: 1px dotted;">
+      <div class="flex flex--col gap--xsmall text--center p--1 w--full border--h-6">
         <div class="flex flex--row gap--medium flex--center-x">
           <div class="flex flex--col gap--xsmall">
             <span class="label label--small">{{ gregorian.weekday.en }}</span>
@@ -23,7 +23,7 @@
             <span class="title title--small">{{ gregorian.month.en }}</span>
           </div>
           {% if show_hijri %}
-          <div class="divider" style="height: 2rem;"></div>
+          <div class="divider h--8"></div>
           <div class="flex flex--col gap--xsmall">
             <span class="label label--small">Hijri</span>
             <span class="value value--large">{{ hijri.day }}</span>
@@ -35,31 +35,31 @@
 
       {% comment %} Prayer Items - Wrapping with outline {% endcomment %}
       {% comment %} Fajr {% endcomment %}
-      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 100px; text-align: center;">
+      <div class="outline flex flex--col flex--center gap--xsmall p--1 w--min-[100px] text--center">
         <span class="label label--small">Fajr</span>
         <span class="value value--large value--tnums" data-value-fit="true" data-value-fit-max-height="50">{{ timings.Fajr }}</span>
       </div>
 
       {% comment %} Dhuhr {% endcomment %}
-      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 100px; text-align: center;">
+      <div class="outline flex flex--col flex--center gap--xsmall p--1 w--min-[100px] text--center">
         <span class="label label--small">Dhuhr</span>
         <span class="value value--large value--tnums" data-value-fit="true" data-value-fit-max-height="50">{{ timings.Dhuhr }}</span>
       </div>
 
       {% comment %} Asr {% endcomment %}
-      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 100px; text-align: center;">
+      <div class="outline flex flex--col flex--center gap--xsmall p--1 w--min-[100px] text--center">
         <span class="label label--small">Asr</span>
         <span class="value value--large value--tnums" data-value-fit="true" data-value-fit-max-height="50">{{ timings.Asr }}</span>
       </div>
 
       {% comment %} Maghrib {% endcomment %}
-      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 100px; text-align: center;">
+      <div class="outline flex flex--col flex--center gap--xsmall p--1 w--min-[100px] text--center">
         <span class="label label--small">Maghrib</span>
         <span class="value value--large value--tnums" data-value-fit="true" data-value-fit-max-height="50">{{ timings.Maghrib }}</span>
       </div>
 
       {% comment %} Isha {% endcomment %}
-      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 100px; text-align: center;">
+      <div class="outline flex flex--col flex--center gap--xsmall p--1 w--min-[100px] text--center">
         <span class="label label--small">Isha</span>
         <span class="value value--large value--tnums" data-value-fit="true" data-value-fit-max-height="50">{{ timings.Isha }}</span>
       </div>
