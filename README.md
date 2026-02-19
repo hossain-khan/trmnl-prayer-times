@@ -102,6 +102,18 @@ trmnl-prayer-times/
 - Perfect for dashboard integration
 - Shows essential prayer info only
 
+### Layout Previews
+
+| Full Layout | Half Horizontal |
+|---|---|
+| ![Full Layout](assets/demo/preview-full.png) | ![Half Horizontal](assets/demo/preview-half-horizontal.png) |
+| All 5 prayers + dates | Side-by-side columns |
+
+| Half Vertical | Quadrant |
+|---|---|
+| ![Half Vertical](assets/demo/preview-half-vertical.png) | ![Quadrant](assets/demo/preview-quadrant.png) |
+| Vertical list | Compact corner |
+
 ## ⚙️ How It Works
 
 ### Data Flow
