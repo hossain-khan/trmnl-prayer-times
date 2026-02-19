@@ -14,6 +14,7 @@
   description: Display accurate 🕌 Islamic prayer times for your location with Hijri calendar, 12/24-hour format options, and responsive layouts for all TRMNL devices.
   category: life,personal
   email_address: trmnl@hossain.dev
+  github_url: https://github.com/hossain-khan/trmnl-prayer-times
 
 # Address: User's location (city, address, or neighborhood)
 # https://aladhan.com/prayer-times-api#get-/timingsByAddress/
