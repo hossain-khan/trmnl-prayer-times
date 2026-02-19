@@ -1,387 +1,249 @@
-# 🕌 Prayer Times for TRMNL
+# 🕌 Islamic Prayer Times for TRMNL
 
-Display accurate Islamic prayer times on your TRMNL e-ink device, powered by the reliable [Aladhan API](https://aladhan.com/). Shows Fajr, Dhuhr, Asr, Maghrib, and Isha prayer times in multiple responsive layouts.
+Display accurate Islamic prayer times on your TRMNL e-ink device or BYOD display, powered by the reliable [Aladhan API](https://aladhan.com/). Shows all 5 daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha) with optional Islamic (Hijri) calendar dates in beautiful, responsive layouts.
+
+## ✨ Features
+
+- **Accurate Prayer Times**: Uses Aladhan API with 20+ calculation methods
+- **4 Responsive Layouts**: Full-screen, half horizontal/vertical, and compact quadrant
+- **Smart Display**: Works on all TRMNL devices and BYOD displays
+- **User Customizable**:
+  - Location by address (e.g., "London, UK", "New York, USA")
+  - Calculation method (Muslim World League, ISNA, and more)
+  - Time format (24-hour or 12-hour with AM/PM)
+  - Optional Hijri (Islamic calendar) date
+  - Custom plugin title
+- **E-ink Optimized**: Perfect readability on grayscale and monochrome displays
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Installation
 
-- A TRMNL device
-- Your geographic coordinates (latitude/longitude)
-- Understanding of [TRMNL Framework](https://trmnl.com/framework)
+1. Open [TRMNL App](https://app.trmnl.com)
+2. Search for **"Islamic Prayer Times"** plugin
+3. Click **"Add Plugin"**
 
-### Getting Started
+### Configuration
 
-1. **Add Prayer Times Plugin to TRMNL**:
-   - Go to [TRMNL App](https://app.trmnl.com)
-   - Search for "Prayer Times" plugin
-   - Click "Add Plugin"
+1. **Set Your Location**:
+   - Enter your city, address, or neighborhood
+   - Examples: "Trafalgar Square, London, UK", "Paris, France", "New York, USA"
+   - The plugin automatically geocodes your location
 
-2. **Configure Your Location**:
-   - Get your latitude and longitude (e.g., Google Maps or [GPS coordinates finder](https://www.gps-coordinates.net/))
-   - Enter your coordinates in the plugin settings
-   - Choose calculation method (Islamic Society of North America recommended)
-   - Select time display format (24-hour or 12-hour)
+2. **Choose Calculation Method**:
+   - Muslim World League (MWL) - Recommended as default
+   - Islamic Society of North America (ISNA)
+   - Or select from 20+ other Islamic scholarly methods
 
-3. **Choose Display Layout**:
-   - **Full**: All prayers with Hijri date
-   - **Half Horizontal**: Prayer times side-by-side
-   - **Half Vertical**: Current/next prayer emphasized
-   - **Quadrant**: Most important prayer only (compact)
+3. **Select Time Format**:
+   - 24-hour format: "14:30"
+   - 12-hour format: "2:30 PM"
 
-4. **Save & Done**:
-   - Prayer times auto-update daily with accurate times for your location
-   - Displays all 5 religious prayer times: Fajr, Dhuhr, Asr, Maghrib, Isha
+4. **Optional Settings**:
+   - Show Islamic (Hijri) calendar date
+   - Customize the plugin title
+
+5. **Choose Layout**:
+   - **Full**: All 5 prayers with dates (recommended for dedicated space)
+   - **Half Horizontal**: Side-by-side layout for mixed displays
+   - **Half Vertical**: Vertical list format for narrow spaces
+   - **Quadrant**: Compact corner display for dashboards
+
+### That's It!
+
+Prayer times auto-update daily and are accurate for your location based on the calculation method you choose.
 
 ## 📁 Project Structure
 
 ```
-your-plugin-name/
+trmnl-prayer-times/
 ├── .github/
-│   ├── copilot-instructions.md    # AI assistant context (customize this!)
-│   └── TEMPLATE_USAGE.md           # Instructions for using the template
+│   └── copilot-instructions.md     # Development guidelines
 ├── assets/
-│   ├── icon/                       # Your plugin icon(s)
-│   └── demo/                       # Demo screenshots
+│   ├── icon/                       # Decorative icons (mosque, praying figure)
+│   ├── demo/                       # Demo screenshots
+│   └── sample-response/            # Sample API responses for testing
 ├── templates/
-│   ├── shared.liquid               # Reusable components
-│   ├── full.liquid                 # Full-screen layout
+│   ├── shared.liquid               # Reusable prayer components
+│   ├── full.liquid                 # Full-screen layout (all 5 prayers + dates)
 │   ├── half_horizontal.liquid      # Side-by-side layout
-│   ├── half_vertical.liquid        # Stacked layout
+│   ├── half_vertical.liquid        # Vertical list layout
 │   └── quadrant.liquid             # Compact corner layout
-├── settings.yml                    # Plugin configuration
-├── custom-fields.yml               # Form field definitions
-├── LICENSE                         # License (MIT by default)
-└── README.md                       # This file
+├── settings.yml                    # API endpoint & refresh configuration
+├── custom-fields.yml               # User-facing form fields
+├── README.md                       # This file
+├── LICENSE                         # MIT License
+└── GETTING_STARTED.md              # Extended setup guide
 ```
 
-## 🎨 Template Files
+## 🎨 Layout Templates
 
-### Core Templates
+### Full Layout (`full.liquid`)
+- All 5 prayers in grid format
+- Gregorian date + optional Hijri date
+- Best for dedicated prayer times display
+- Shows prayer times for the entire day
 
-- **`shared.liquid`**: Reusable prayer times components
-  - Error state for unconfigured plugin
-  - Prayer card component
-  - Prayer row component
-  - Hijri date display
-  - Title bar template
+### Half Horizontal (`half_horizontal.liquid`)
+- Side-by-side prayer columns
+- Responsive: switches to vertical on portrait
+- Good for shared dashboard spaces
+- Compact yet readable
 
-- **`full.liquid`**: Full-screen prayer times display
-  - All 5 prayers in 2x3 grid layout
-  - Gregorian & Hijri dates (conditional)
-  - Tabular alignment for precise time display
-  - Best for dedicated prayer time display
+### Half Vertical (`half_vertical.liquid`)
+- Vertical list of all 5 prayers
+- Name and time side-by-side
+- Dividers between each prayer
+- Minimal height usage
 
-- **`half_horizontal.liquid`**: Side-by-side layout
-  - Main prayers (Fajr, Dhuhr, Asr) on left
-  - Evening prayers (Maghrib, Isha) on right
-  - Responsive: switches to stacked on portrait
-  - Good for shared TRMNL space
+### Quadrant (`quadrant.liquid`)
+- Single corner compact display
+- Minimal padding and spacing
+- Perfect for dashboard integration
+- Shows essential prayer info only
 
-- **`half_vertical.liquid`**: Vertical list layout
-  - All 5 prayers in list format
-  - Name and time side-by-side
-  - Dividers between each prayer
-  - Compact height usage
+## ⚙️ How It Works
 
-- **`quadrant.liquid`**: Quarter-size compact display
-  - Shows Fajr (first prayer) only
-  - Minimal space (tight padding)
-  - Perfect for dashboard integration
+### Data Flow
 
-### Layout Previews
+```
+1. User enters location (e.g., "London, UK")
+2. User selects calculation method (e.g., Muslim World League)
+3. TRMNL device gets configured
+4. Every 24 hours, TRMNL requests: https://api.aladhan.com/v1/timingsByAddress/now
+   - Parameters: address, method
+5. Aladhan API returns 5 prayer times for that day
+6. TRMNL renders prayer times in chosen layout
+7. User sees accurate prayer times for their location
+```
 
-| Full Layout | Half Horizontal |
-|---|---|
-| ![Full Layout Preview](assets/demo/preview-full.png) | ![Half Horizontal Preview](assets/demo/preview-half-horizontal.png) |
-| **Half Vertical** | **Quadrant** |
-| ![Half Vertical Preview](assets/demo/preview-half-vertical.png) | ![Quadrant Preview](assets/demo/preview-quadrant.png) |
+### Configuration Files
 
-## ⚙️ Configuration Files
-
-### `settings.yml`
-
-Configure your plugin's behavior:
-
+**`settings.yml`**:
 ```yaml
-strategy: "polling"                    # How to fetch data: polling, webhook, static
-polling_url: "https://api.example.com" # Endpoint to fetch data from
-refresh_frequency: 15                  # Update interval in minutes (1-1440)
-layouts: [full, half_horizontal, ...]  # Available layout types
+strategy: "polling"                              # Daily polling
+polling_url: "https://api.aladhan.com/v1/timingsByAddress/now?address={{address}}&method={{method}}"
+refresh_frequency: 1440                          # Once per 24 hours
+layouts: [full, half_horizontal, half_vertical, quadrant]
 ```
 
-**Strategy Options**:
-- **polling**: TRMNL fetches data at specified intervals (best for most plugins)
-- **webhook**: You push data to TRMNL when it changes (lower latency)
-- **static**: Hardcoded data (simple displays)
+**`custom-fields.yml`**:
+- `address` (required): Your location as text
+- `method` (required): Calculation method (9 options)
+- `time_format` (optional): 24h or 12h display
+- `show_hijri_date` (optional): Display Islamic calendar
+- `custom_title` (optional): Rename the plugin
 
-### `custom-fields.yml`
+### Calculation Methods (Aladhan API)
 
-Define user-facing form fields:
+All methods follow Islamic scholarship standards:
 
-```yaml
-- key: "api_key"
-  type: "text"
-  label: "API Key"
-  required: true
+- **Muslim World League (MWL)** - Used globally ⭐ Recommended
+- **Islamic Society of North America (ISNA)**
+- **University of Islamic Sciences, Karachi**
+- **Umm Al-Qura University, Makkah**
+- **Egyptian General Authority**
+- Plus 8+ additional regional and scholarly methods
 
-- key: "data_source"
-  type: "select"
-  options:
-    - label: "Option A"
-      value: "a"
-```
+[View all methods →](https://aladhan.com/calculation-methods)
 
-**Field Types**: `text`, `long_text`, `select`, `checkbox`, `number`, `url`, `email`
+## 🧪 Testing & Verification
 
-Access in templates:
-```liquid
-{{ trmnl.plugin_settings.custom_fields_values.api_key }}
-```
+### Test with Sample Data
 
-## 🎯 Key Features
-
-### Accurate Prayer Times
-- Uses the reliable **Aladhan API** (no key required)
-- Muslim World League calculation method (recommended globally)
-- Support for 20+ calculation methods
-- Multiple time format options (24-hour / 12-hour)
-
-### Responsive Design
-- 4 layout options for different display configurations
-- Supports all TRMNL devices and BYOD displays
-- Breakpoints: `sm:` (600px), `md:` (800px), `lg:` (1024px+)
-- Portrait mode responsive fallbacks
-
-### Customizable
-- User-configurable latitude/longitude
-- Choice of calculation methods
-- Optional Hijri (Islamic) date display
-- Custom plugin title
-- Multiple time format options
-
-### E-ink Optimized
-- Clean, high-contrast design
-- Grayscale and monochrome compatible
-- Smooth rendering on all bit-depths (1, 2, 4, 8-bit)
-- Optimized typography for readability
-
-## ⚙️ Configuration
-
-### Settings (`settings.yml`)
-The plugin uses the **Aladhan API** endpoint
-```yaml
-polling_url: "https://api.aladhan.com/v1/calendar?latitude={latitude}&longitude={longitude}&method={method}&month={month}&year={year}"
-refresh_frequency: 1440    # Once daily (24 hours)
-```
-
-### Custom Fields (`custom-fields.yml`)
-Users configure:
-- **Latitude**: Geographic latitude (required)
-- **Longitude**: Geographic longitude (required)
-- **Calculation Method**: Islamic calculation method (required)
-  - Muslim World League (MWL) - Recommended
-  - Islamic Society of North America (ISNA)
-  - And 18+ other methods
-- **Time Format**: 24-hour or 12-hour display
-- **Show Hijri Date**: Optional Islamic date display
-- **Custom Title**: Optional custom plugin name
-
-## 🔄 Data Flow
-
-### Prayer Times from Aladhan API
-
-```
-1. User configures latitude/longitude in TRMNL plugin settings
-2. TRMNL sends daily request to Aladhan API with user coordinates
-3. Aladhan returns JSON with 5 prayer times:
-   - Fajr (pre-dawn)
-   - Dhuhr (noon)
-   - Asr (afternoon)
-   - Maghrib (sunset)
-   - Isha (night)
-4. TRMNL renders prayer times in chosen layout
-5. Display refreshes daily at configured time
-```
-
-Example Aladhan API Response:
-```json
-{
-  "data": [{
-    "timings": {
-      "Fajr": "05:45",
-      "Dhuhr": "12:30",
-      "Asr": "15:45",
-      "Maghrib": "17:45",
-      "Isha": "19:15"
-    },
-    "date": {
-      "gregorian": {...},
-      "hijri": {...}
-    }
-  }]
-}
-```
-
-## 🧪 Testing
-
-### Using TRMNL Markup Editor
-
+Use sample responses in `assets/sample-response/`:
 1. Go to [editor.trmnl.com](https://editor.trmnl.com)
-2. Copy your prayer times template code
-3. Add sample JSON data from `assets/demo/sample-data.json`
-4. Preview across all device sizes
-5. Verify prayer times display correctly
+2. Copy template code from `templates/full.liquid`
+3. Paste sample JSON from `assets/sample-response/toronto.json`
+4. Preview and test all layouts
 
-### Prayer Times Test Data
+### Verification Checklist
 
-The `assets/demo/sample-data.json` contains sample prayer times for New York (Feb 18, 2026):
-- **Fajr**: 05:45 - Early morning
-- **Dhuhr**: 12:30 - Noon
-- **Asr**: 15:45 - Afternoon
-- **Maghrib**: 17:45 - Sunset
-- **Isha**: 19:15 - Evening
+- [ ] All 5 prayers display correctly
+- [ ] Time format toggles work (24h/12h)
+- [ ] Hijri date shows when enabled
+- [ ] Custom title overrides work
+- [ ] Responsive across all device sizes
+- [ ] Error state displays when unconfigured
+- [ ] Test different calculation methods
 
-### Test Scenarios
+## 📚 Resources
 
-✅ **Happy Path**
-- Valid coordinates (latitude/longitude)
-- All 5 prayer times display in correct layouts
-- Responsive across sm, md, lg devices
-- Time formatting works (24h/12h)
+**Prayer Times & Islamic Calendar**:
+- [Aladhan API Docs](https://aladhan.com/prayer-times-api)
+- [Calculation Methods Explained](https://aladhan.com/calculation-methods)
 
-⚠️ **Edge Cases**
-- Very high latitude (polar regions - prayer times may be unusual)
-- Hijri date display enabled/disabled
-- Different calculation methods
-- Custom title override
+**TRMNL Development**:
+- [TRMNL Framework](https://trmnl.com/framework) - Design system
+- [Device Models API](https://trmnl.com/api/models) - Device specs
+- [Plugin Guides](https://help.trmnl.com/en/collections/7820559-plugin-guides)
 
-❌ **Error States**
-- No coordinates configured
-- Invalid coordinates
-- Missing custom fields
+## ❓ FAQ
 
-### Manual Checklist
+**Q: Do I need an API key?**  
+A: No! Aladhan API is free to use. No registration needed.
 
-- [ ] Test all 4 layouts (full, half_horizontal, half_vertical, quadrant)
-- [ ] Verify on all device sizes (sm, md, lg)
-- [ ] Test with sample data from assets/demo
-- [ ] Try all calculation methods
-- [ ] Test 24-hour and 12-hour formats
-- [ ] Test with/without Hijri date
-- [ ] Test custom title feature
-- [ ] Verify error state displays
-- [ ] Test portrait mode responsive
-- [ ] Check tabular number alignment
+**Q: Which calculation method should I use?**  
+A: Muslim World League (MWL) is widely used globally. However, choose the method that matches your local Islamic authority or personal preference.
 
-## 📚 Development Resources
+**Q: Can I change the location after setup?**  
+A: Yes! Edit the plugin settings in TRMNL and enter a new location.
 
-### TRMNL Documentation
-- [TRMNL Framework](https://trmnl.com/framework) - Design system and utilities
-- [Device Models API](https://trmnl.com/api/models) - Device specifications
-- [Plugin Guides](https://help.trmnl.com/en/collections/7820559-plugin-guides) - How-to guides
-- [Liquid 101](https://help.trmnl.com/en/articles/10671186-liquid-101) - Template language basics
+**Q: Does it work for prayer times during Ramadan?**  
+A: Yes, prayer times adjust automatically based on the actual astronomical calculations for each day.
 
-### Prayer Times Resources
-- [Aladhan API Docs](https://aladhan.com/developers) - Free prayer times API
-- [Prayer Times Methods](https://aladhan.com/prayer-times-calculation) - Calculation method details
-- [Islamic Calendar](https://en.wikipedia.org/wiki/Islamic_calendar) - Hijri calendar info
-
-### Reference: Device Specifications
-
-| Device | Width | Height | Display | Breakpoint |
-|--------|-------|--------|---------|-----------|
-| TRMNL X | 1040px | 780px | 4-bit (16 shades) | lg: |
-| TRMNL OG V2 | 800px | 480px | 2-bit (4 shades) | md: |
-| TRMNL OG | 800px | 480px | 1-bit (2 shades) | md: |
-| Kindle 2024 | 800px | 480px | 8-bit (256 shades) | sm: |
-
-### Framework Quick Reference
-
-```liquid
-<!-- Prayer Time Display -->
-<div class="flex flex--col gap--small">
-  <span class="label">Fajr</span>
-  <span class="value value--large value--tnums">05:45</span>
-</div>
-
-<!-- Prayer Grid (2 columns) -->
-<div class="grid grid--cols-2 gap--medium">
-  <!-- Each prayer card -->
-</div>
-
-<!-- Responsive Divider -->
-<div class="divider"></div>
-
-<!-- Date Display -->
-<div class="flex flex--col text--center">
-  <span class="label">Tuesday</span>
-  <span class="title">18 February</span>
-</div>
-
-<!-- Error State -->
-<div class="flex flex--col flex--center-x flex--center-y h--full">
-  <div class="value">🕌</div>
-  <div class="title">Configure Location</div>
-</div>
-```
-
-## 🐛 Common Issues & Solutions
-
-### Prayer Times Not Displaying
-- **Problem**: "Configure Location" error persists
-- **Solution**: Verify latitude/longitude are valid numbers with decimals (e.g., 40.7128, -74.006)
-
-### Wrong Prayer Times
-- **Problem**: Times don't match local prayer times
-- **Solution**: 
-  1. Verify latitude/longitude are correct ([GPS Coordinates Finder](https://www.gps-coordinates.net/))
-  2. Check calculation method selected (Muslim World League is recommended globally)
-  3. Verify timezone settings in TRMNL
-
-### Time Format Not Changing
-- **Problem**: Still showing 24-hour format when set to 12-hour
-- **Solution**: 
-  1. Update settings.yml to use time format variable
-  2. Re-upload templates to TRMNL
-  3. Clear plugin cache/refresh device
-
-### Hijri Date Not Showing
-- **Problem**: Islamic date not displayed even when enabled
-- **Solution**:
-  1. Verify `show_hijri_date` is set to `true` in settings
-  2. Check full.liquid template has hijri date rendering logic
-  3. Ensure sample data includes hijri field from Aladhan
-
-### Layout Issues on Specific Device
-- **Problem**: Layout breaks on TRMNL OG but works on TRMNL X
-- **Solution**:
-  1. Test in TRMNL Markup Editor with correct device size
-  2. Verify breakpoint usage (md:, lg: prefixes)
-  3. Check portrait mode responsive fallbacks
-
-## 📞 Getting Help
-
-- **TRMNL Documentation**: [help.trmnl.com](https://help.trmnl.com)
-- **Aladhan API**: [aladhan.com/developers](https://aladhan.com/developers)
-- **TRMNL Framework**: [trmnl.com/framework](https://trmnl.com/framework)
-- **GitHub Issues**: Open an issue in this repository
-
-## 🤝 Contributing
-
-Improvements, bug fixes, and feedback welcome!
-
-- Found a display issue? Open an issue
-- Have a better layout idea? Submit a PR
-- Want to add calculation method examples? Contribute!
-- Translations? Help expand to other languages!
+**Q: What if my prayer times don't match my mosque?**  
+A: Mosques often use their own adjustments. Try different calculation methods to find one that matches your mosque's times.
 
 ## 📄 License
 
-This plugin is provided under the MIT License - see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-**Happy praying! 🙏**
+**Made with 🙏 for the Muslim community**
 
-Last Updated: February 18, 2026
+Last Updated: February 2026
+
+## � Common Issues & Solutions
+
+**Q: "Configure Location" error appears**  
+A: Make sure you've entered a valid location (e.g., "London, UK" or "New York, USA"). The location must be a city, address, or neighborhood that Aladhan can geocode.
+
+**Q: Prayer times don't match my mosque**  
+A: Different Islamic authorities use different calculation methods. Try switching to a different method in the plugin settings that matches your local mosque or Islamic center.
+
+**Q: Show Hijri Date isn't working**  
+A: Enable "Show Islamic Calendar Date" in the plugin settings, save, and refresh your TRMNL device. The Hijri date will appear in the full and half layouts.
+
+**Q: Time format (12h/24h) isn't changing**  
+A: Change the setting in TRMNL app, save, and wait for the device to refresh (up to 24 hours, or manually refresh if your device supports it).
+
+**Q: Prayer times are way off**  
+A: Verify your location is correct. Use examples like "London, UK" or "Paris, France" - including city and country helps the API geocode accurately.
+
+**Q: Custom title doesn't work**  
+A: Enter your custom title in the "Custom Plugin Title" field and save. It will override the default "Islamic Prayer Times" name.
+
+## 📞 Getting Help
+
+- **Prayer Times Questions**: Contact your local Islamic center or [visit Aladhan](https://aladhan.com/)
+- **Plugin Issues**: Check this README or open an issue on GitHub
+- **TRMNL Support**: [help.trmnl.com](https://help.trmnl.com)
+
+## 🤝 Contributing
+
+Contributions welcome! Whether it's bug fixes, new features, or improvements:
+- Found an issue? Submit it!
+- Have a layout idea? Create a PR!
+- Want to add more calculation methods? Help us improve!
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details
+
+---
+
+**Made with 🙏 for the Muslim community**
+
+Last Updated: February 2026
