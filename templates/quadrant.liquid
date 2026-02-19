@@ -3,11 +3,12 @@
   Shows Fajr (first prayer) in most compact form
 {% endcomment %}
 
-{% assign timings = data.timings %}
+{% assign prayer_data = data.data %}
+{% assign timings = prayer_data.timings %}
 {% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
 
 <div class="layout">
-  {% if data and timings.Fajr %}
+  {% if prayer_data and timings.Fajr %}
     <div class="flex flex--col flex--center-x flex--center-y h--full gap--xsmall p--1">
       {% comment %} Show Fajr (first prayer of the day) in quadrant view {% endcomment %}
       <div class="value value--large md:value--xlarge value--tnums">{{ timings.Fajr }}</div>
