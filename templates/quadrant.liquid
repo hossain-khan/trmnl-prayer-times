@@ -1,6 +1,6 @@
 {% comment %}
   QUADRANT LAYOUT - Prayer Times Compact
-  Single outlined card showing Fajr (first prayer) in most compact form
+  All 5 prayers in outlined cards, wrapping in compact quarter-screen display
 {% endcomment %}
 
 {% assign prayer_data = data %}
@@ -9,11 +9,35 @@
 
 <div class="layout">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--row flex--wrap gap--small p--1" style="justify-content: center;">
-      {% comment %} Fajr - Single outlined card {% endcomment %}
-      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 80px; text-align: center;">
+    <div class="flex flex--row flex--wrap gap--xsmall p--1" style="justify-content: center;">
+      {% comment %} Fajr {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 70px; text-align: center;">
         <span class="label label--small">Fajr</span>
-        <span class="value value--medium value--tnums" data-value-fit="true" data-value-fit-max-height="45">{{ timings.Fajr }}</span>
+        <span class="value value--xsmall value--tnums" data-value-fit="true" data-value-fit-max-height="35">{{ timings.Fajr }}</span>
+      </div>
+
+      {% comment %} Dhuhr {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 70px; text-align: center;">
+        <span class="label label--small">Dhuhr</span>
+        <span class="value value--xsmall value--tnums" data-value-fit="true" data-value-fit-max-height="35">{{ timings.Dhuhr }}</span>
+      </div>
+
+      {% comment %} Asr {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 70px; text-align: center;">
+        <span class="label label--small">Asr</span>
+        <span class="value value--xsmall value--tnums" data-value-fit="true" data-value-fit-max-height="35">{{ timings.Asr }}</span>
+      </div>
+
+      {% comment %} Maghrib {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 70px; text-align: center;">
+        <span class="label label--small">Maghrib</span>
+        <span class="value value--xsmall value--tnums" data-value-fit="true" data-value-fit-max-height="35">{{ timings.Maghrib }}</span>
+      </div>
+
+      {% comment %} Isha {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 70px; text-align: center;">
+        <span class="label label--small">Isha</span>
+        <span class="value value--xsmall value--tnums" data-value-fit="true" data-value-fit-max-height="35">{{ timings.Isha }}</span>
       </div>
     </div>
   {% else %}
