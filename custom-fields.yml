@@ -20,7 +20,7 @@
 - keyname: address
   field_type: string
   name: Location
-  placeholder: "London, UK"
+  placeholder: "Toronto, Ontario, CA"
   description: "Your city, address, or neighborhood"
   help_text: "Include city and country for best results. Examples: 'Trafalgar Square, London, UK', 'Paris, France', 'New York, USA'"
   required: true

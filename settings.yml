@@ -10,6 +10,7 @@ strategy: "polling"
 # Aladhan API Endpoint: Fetch daily prayer times by address
 # Format: /timingsByAddress/{date}?address={address}&method={method}
 # Fetches today's prayer times (month/year default to current date)
+# https://aladhan.com/prayer-times-api#get-/timingsByAddress/
 polling_url: "https://api.aladhan.com/v1/timingsByAddress/now?address={{ address }}&method={{ method }}"
 
 # Refresh Frequency: How often to fetch prayer times (in minutes)
