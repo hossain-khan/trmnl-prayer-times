@@ -8,12 +8,11 @@
   ============================================================================
 {% endcomment %}
 
-{% assign today = data[0] %}
-{% assign timings = today.timings %}
+{% assign timings = data.timings %}
 {% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
 
 <div class="layout">
-  {% if today and timings.Fajr %}
+  {% if data and timings.Fajr %}
     <div class="flex flex--row gap--medium portrait:flex--col h--full p--2">
       {% comment %} Left column: First 3 prayers {% endcomment %}
       <div class="flex flex--col gap--small" style="flex: 1;">

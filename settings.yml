@@ -7,10 +7,10 @@
 # Using polling to fetch prayer times daily from Aladhan API
 strategy: "polling"
 
-# Aladhan API Endpoint: Fetch monthly prayer times
-# Format: /calendar?latitude={lat}&longitude={lon}&method={method}&month={month}&year={year}
-# Note: TRMNL will substitute {month} and {year} at runtime
-polling_url: "https://api.aladhan.com/v1/calendar?latitude={latitude}&longitude={longitude}&method={method}&month={month}&year={year}"
+# Aladhan API Endpoint: Fetch daily prayer times
+# Format: /timings?latitude={lat}&longitude={lon}&method={method}
+# Fetches today's prayer times (month/year default to current date)
+polling_url: "https://api.aladhan.com/v1/timings?latitude={latitude}&longitude={longitude}&method={method}"
 
 # Refresh Frequency: How often to fetch prayer times (in minutes)
 # Set to 1440 (24 hours) to refresh daily

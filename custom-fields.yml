@@ -23,7 +23,7 @@
   description: "Your location's longitude (e.g., -74.0060 for New York)"
 
 # Calculation Method: Which Islamic calculation method to use
-- keyname: calculation_method
+- keyname: method
   field_type: select
   name: Calculation Method
   default: "3"
