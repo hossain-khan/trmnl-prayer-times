@@ -30,15 +30,15 @@
   description: "Method used to calculate prayer times"
   help_text: "Muslim World League (MWL) is widely used globally"
   options:
-    - "Muslim World League (MWL) - Recommended: 3"
-    - "Islamic Society of North America (ISNA): 2"
-    - "Ummah Al-Qura Method: 1"
-    - "Egyptian General Authority: 5"
-    - "Karachi Method: 8"
-    - "Kuwait: 10"
-    - "Qatar: 9"
-    - "Morocco: 11"
-    - "Bahrain: 12"
+    - "Muslim World League (MWL) - Recommended": "3"
+    - "Islamic Society of North America (ISNA)": "2"
+    - "Ummah Al-Qura Method": "1"
+    - "Egyptian General Authority": "5"
+    - "Karachi Method": "8"
+    - "Kuwait": "10"
+    - "Qatar": "9"
+    - "Morocco": "11"
+    - "Bahrain": "12"
 
 # Time Format: 12-hour or 24-hour format
 - keyname: time_format
@@ -47,8 +47,8 @@
   default: "24h"
   description: "How to display prayer times"
   options:
-    - "24-hour (e.g., 14:30): 24h"
-    - "12-hour (e.g., 2:30 PM): 12h"
+    - "24-hour (e.g., 14:30)": "24h"
+    - "12-hour (e.g., 2:30 PM)": "12h"
 
 # Show Hijri Date: Display Islamic calendar date (optional)
 - keyname: show_hijri_date
