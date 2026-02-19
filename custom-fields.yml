@@ -15,20 +15,15 @@
   category: life,personal
   email_address: trmnl@hossain.dev
 
-# Latitude: User's geographic latitude
-- keyname: latitude
+# Address: User's location (city, address, or neighborhood)
+# https://aladhan.com/prayer-times-api#get-/timingsByAddress/
+- keyname: address
   field_type: string
-  name: Latitude
-  placeholder: "40.7128"
-  description: "Your location's latitude (e.g., 40.7128 for New York)"
-  help_text: "Find your coordinates at https://maps.google.com - search location, right-click, select 'What's here?'"
-
-# Longitude: User's geographic longitude
-- keyname: longitude
-  field_type: string
-  name: Longitude
-  placeholder: "-74.0060"
-  description: "Your location's longitude (e.g., -74.0060 for New York)"
+  name: Location
+  placeholder: "London, UK"
+  description: "Your city, address, or neighborhood"
+  help_text: "Include city and country for best results. Examples: 'Trafalgar Square, London, UK', 'Paris, France', 'New York, USA'"
+  required: true
 
 # Calculation Method: Which Islamic calculation method to use
 - keyname: method

@@ -7,10 +7,10 @@
 # Using polling to fetch prayer times daily from Aladhan API
 strategy: "polling"
 
-# Aladhan API Endpoint: Fetch daily prayer times
-# Format: /timings?latitude={lat}&longitude={lon}&method={method}
+# Aladhan API Endpoint: Fetch daily prayer times by address
+# Format: /timingsByAddress/{date}?address={address}&method={method}
 # Fetches today's prayer times (month/year default to current date)
-polling_url: "https://api.aladhan.com/v1/timings?latitude={{ latitude }}&longitude={{ longitude }}&method={{ method }}"
+polling_url: "https://api.aladhan.com/v1/timingsByAddress/now?address={{ address }}&method={{ method }}"
 
 # Refresh Frequency: How often to fetch prayer times (in minutes)
 # Set to 1440 (24 hours) to refresh daily
@@ -35,32 +35,30 @@ tap_action_url: "https://aladhan.com"
 
 # Developer Notes:
 # 
-# ALADHAN API PARAMETERS:
-# - latitude: User's latitude (configured via custom field)
-# - longitude: User's longitude (configured via custom field)
+# ALADHAN TIMINGS BY ADDRESS ENDPOINT:
+# - Endpoint: /timingsByAddress/{date}
+# - address: User's location (configured via custom field)
+#   Examples: "London, UK", "New York", "Paris", "John's Street, Berlin"
 # - method: Calculation method (configured via custom field)
-#   1 = Ummah Al-Qura Method
+#   Full list: https://aladhan.com/calculation-methods
+#   Common methods:
+#   0 = Jafari / Shia Ithna-Ashari
+#   1 = University of Islamic Sciences, Karachi
 #   2 = Islamic Society of North America (ISNA)
-#   3 = Muslim World League (MWL) [RECOMMENDED]
-#   4 = Umm Al-Qura University
-#   5 = Egyptian General Authority
-#   7 = Al Kawther
-#   8 = Karachi Method
-#   9 = Qatar
-#   10 = Kuwait
-#   11 = Morocco
-#   12 = Bahrain
-#   13 = Individual Tuning
-#   14 = JAKIM Malaysia
-#   15 = ISRA Malaysia
-#   16 = MUIS Singapore
-#   17 = ABBANOOR Algeria
-#   19 = DIYANET Turkey
-#   20 = FRANCE
-#   21 = SINGAPORE
-#   22 = HONG KONG
-#   23 = MOUSSANADA ALGERIE
-#   24 = MOUSSANADA UNION ISLAND
+#   3 = Muslim World League (MWL) [RECOMMENDED - Default]
+#   4 = Umm Al-Qura University, Makkah
+#   5 = Egyptian General Authority of Survey
+#   8 = Gulf Region
+#   9 = Kuwait
+#   10 = Qatar
+#   11 = Majlis Ugama Islam Singapura, Singapore
+#   12 = Union Organization islamic de France
+#
+# WHY ADDRESS INSTEAD OF LAT/LON:
+# - More user-friendly (no coordinate lookup needed)
+# - Aladhan API automatically geocodes the address
+# - Same response format as /timings endpoint
+# - Supports natural language (street names, cities, countries)
 #
 # RESPONSE FORMAT:
 # {
