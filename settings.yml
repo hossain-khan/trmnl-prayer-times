@@ -10,7 +10,7 @@ strategy: "polling"
 # Aladhan API Endpoint: Fetch daily prayer times
 # Format: /timings?latitude={lat}&longitude={lon}&method={method}
 # Fetches today's prayer times (month/year default to current date)
-polling_url: "https://api.aladhan.com/v1/timings?latitude={latitude}&longitude={longitude}&method={method}"
+polling_url: "https://api.aladhan.com/v1/timings?latitude={{ latitude }}&longitude={{ longitude }}&method={{ method }}"
 
 # Refresh Frequency: How often to fetch prayer times (in minutes)
 # Set to 1440 (24 hours) to refresh daily
