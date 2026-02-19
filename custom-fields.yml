@@ -1,134 +1,67 @@
 # Prayer Times Plugin - Custom Form Fields
-# 
+#
+# YAML format for TRMNL custom plugin form builder
+# Reference: https://help.trmnl.com/en/articles/10513740-custom-plugin-form-builder
+#
 # These fields are shown to users when they configure the Prayer Times plugin.
 # Values become available in templates via:
-#   {{ trmnl.plugin_settings.custom_fields_values.field_name }}
+#   {{ trmnl.plugin_settings.custom_fields_values.keyname }}
 
 # Latitude: User's geographic latitude
-- key: "latitude"
-  type: "number"
-  label: "Latitude"
+- keyname: latitude
+  field_type: number
+  name: Latitude
   placeholder: "40.7128"
-  required: true
-  description: "Your location's latitude (e.g., 40.7128 for New York). Find it at https://www.gps-coordinates.net/"
+  description: "Your location's latitude (e.g., 40.7128 for New York)"
+  help_text: "Find your coordinates at https://www.gps-coordinates.net/"
 
 # Longitude: User's geographic longitude
-- key: "longitude"
-  type: "number"
-  label: "Longitude"
+- keyname: longitude
+  field_type: number
+  name: Longitude
   placeholder: "-74.0060"
-  required: true
   description: "Your location's longitude (e.g., -74.0060 for New York)"
 
 # Calculation Method: Which Islamic calculation method to use
-- key: "calculation_method"
-  type: "select"
-  label: "Calculation Method"
-  required: true
+- keyname: calculation_method
+  field_type: select
+  name: Calculation Method
+  default: "3"
+  description: "Method used to calculate prayer times"
+  help_text: "Muslim World League (MWL) is widely used globally"
   options:
-    - label: "Muslim World League (MWL) - Recommended"
-      value: "3"
-    - label: "Islamic Society of North America (ISNA)"
-      value: "2"
-    - label: "Ummah Al-Qura Method"
-      value: "1"
-    - label: "Egyptian General Authority"
-      value: "5"
-    - label: "Karachi Method"
-      value: "8"
-    - label: "Kuwait"
-      value: "10"
-    - label: "Qatar"
-      value: "9"
-    - label: "Morocco"
-      value: "11"
-    - label: "Bahrain"
-      value: "12"
-  description: "Method used to calculate prayer times. Muslim World League (MWL) is widely used globally."
+    - "Muslim World League (MWL) - Recommended: 3"
+    - "Islamic Society of North America (ISNA): 2"
+    - "Ummah Al-Qura Method: 1"
+    - "Egyptian General Authority: 5"
+    - "Karachi Method: 8"
+    - "Kuwait: 10"
+    - "Qatar: 9"
+    - "Morocco: 11"
+    - "Bahrain: 12"
 
 # Time Format: 12-hour or 24-hour format
-- key: "time_format"
-  type: "select"
-  label: "Time Format"
-  required: true
-  options:
-    - label: "24-hour (e.g., 14:30)"
-      value: "24h"
-    - label: "12-hour (e.g., 2:30 PM)"
-      value: "12h"
+- keyname: time_format
+  field_type: select
+  name: Time Format
+  default: "24h"
   description: "How to display prayer times"
+  options:
+    - "24-hour (e.g., 14:30): 24h"
+    - "12-hour (e.g., 2:30 PM): 12h"
 
-# Show Hijri Date: Display Islamic calendar date
-- key: "show_hijri_date"
-  type: "checkbox"
-  label: "Show Hijri Date"
-  description: "Display the Islamic calendar date below prayer times (if space allows)"
+# Show Hijri Date: Display Islamic calendar date (optional)
+- keyname: show_hijri_date
+  field_type: boolean
+  name: Show Islamic Calendar Date
+  default: false
+  description: "Display the Islamic calendar date along with prayer times"
+  optional: true
 
-# Custom Title: Allow users to rename the plugin display
-- key: "custom_title"
-  type: "text"
-  label: "Custom Title (Optional)"
+# Custom Title: Allow users to rename the plugin display (optional)
+- keyname: custom_title
+  field_type: string
+  name: Custom Plugin Title
   placeholder: "Prayer Times"
-  required: false
-  description: "Leave empty to use default 'Prayer Times' title"
-
-  required: false
-  description: "Display extra information in the layout"
-
-# Example number field
-- key: "refresh_interval"
-  type: "number"
-  label: "Refresh Interval (minutes)"
-  placeholder: "15"
-  required: false
-  description: "How often to refresh data (1-1440)"
-
-# Example custom title
-- key: "custom_title"
-  type: "text"
-  label: "Custom Plugin Title"
-  placeholder: "Enter a custom title (optional)"
-  required: false
-  description: "Leave blank to use plugin's default title"
-
-# Developer Notes:
-#
-# 1. ACCESSING FIELD VALUES IN TEMPLATES
-#    {{ trmnl.plugin_settings.custom_fields_values.api_key }}
-#    {{ trmnl.plugin_settings.custom_fields_values.data_source }}
-#    {{ trmnl.plugin_settings.custom_fields_values.show_details }}
-#
-# 2. CONDITIONAL DISPLAY
-#    {% if trmnl.plugin_settings.custom_fields_values.show_details == "true" %}
-#      <!-- Show detailed content -->
-#    {% endif %}
-#
-# 3. FIELD REQUIREMENTS
-#    - required: true = User must fill in this field
-#    - required: false = Optional field
-#    - All required fields must be set before plugin activates
-#
-# 4. FIELD ORDERING
-#    - Fields appear in the order defined in this file
-#    - Group related fields together
-#    - Put most important fields first
-#
-# 5. VALIDATION
-#    - type: url = Validates URL format
-#    - type: email = Validates email format
-#    - type: number = Only numeric input allowed
-#    - Custom validation in your backend if needed
-#
-# 6. SECURITY
-#    - Never log or expose API keys/secrets
-#    - Treat credentials as sensitive
-#    - Use HTTPS for webhook URLs
-#    - Consider using environment variables for secrets
-#
-# 7. CONDITIONAL VISIBILITY (Advanced)
-#    Some TRMNL versions support conditional field visibility.
-#    If supported, you can add "visible_if" to show/hide fields:
-#    - visible_if:
-#        field: "data_source"
-#        value: "source_a"
-#      (Shows this field only when data_source == "source_a")
+  description: "Override the default 'Prayer Times' title"
+  optional: true
