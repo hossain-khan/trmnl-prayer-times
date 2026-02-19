@@ -9,15 +9,15 @@
 
 # Latitude: User's geographic latitude
 - keyname: latitude
-  field_type: number
+  field_type: string
   name: Latitude
   placeholder: "40.7128"
   description: "Your location's latitude (e.g., 40.7128 for New York)"
-  help_text: "Find your coordinates at https://www.gps-coordinates.net/"
+  help_text: "Find your coordinates at https://maps.google.com - search location, right-click, select 'What's here?'"
 
 # Longitude: User's geographic longitude
 - keyname: longitude
-  field_type: number
+  field_type: string
   name: Longitude
   placeholder: "-74.0060"
   description: "Your location's longitude (e.g., -74.0060 for New York)"
