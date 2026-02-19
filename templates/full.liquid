@@ -1,6 +1,6 @@
 {% comment %}
   FULL LAYOUT - Prayer Times Display
-  Shows all 5 prayers with date information
+  Shows all 5 prayers in a clean table format with date information
 {% endcomment %}
 
 {% assign prayer_data = data %}
@@ -28,29 +28,31 @@
         {% endif %}
       </div>
 
-      {% comment %} Prayer Times Grid {% endcomment %}
-      <div class="grid grid--cols-2 gap--medium gap--large">
-        <div class="text--center">
-          <span class="label md:label label--small">Fajr</span>
-          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Fajr }}</div>
-        </div>
-        <div class="text--center">
-          <span class="label md:label label--small">Dhuhr</span>
-          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Dhuhr }}</div>
-        </div>
-        <div class="text--center">
-          <span class="label md:label label--small">Asr</span>
-          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Asr }}</div>
-        </div>
-        <div class="text--center">
-          <span class="label md:label label--small">Maghrib</span>
-          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Maghrib }}</div>
-        </div>
-        <div class="col--span-2 text--center">
-          <span class="label md:label label--small">Isha</span>
-          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Isha }}</div>
-        </div>
-      </div>
+      {% comment %} Prayer Times Table {% endcomment %}
+      <table class="table table--small" data-table-limit="true">
+        <tbody>
+          <tr>
+            <td><span class="label label--small">Fajr</span></td>
+            <td><span class="value value--small value--tnums">{{ timings.Fajr }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Dhuhr</span></td>
+            <td><span class="value value--small value--tnums">{{ timings.Dhuhr }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Asr</span></td>
+            <td><span class="value value--small value--tnums">{{ timings.Asr }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Maghrib</span></td>
+            <td><span class="value value--small value--tnums">{{ timings.Maghrib }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Isha</span></td>
+            <td><span class="value value--small value--tnums">{{ timings.Isha }}</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   {% else %}
     {% render "error_state", size: "full" %}

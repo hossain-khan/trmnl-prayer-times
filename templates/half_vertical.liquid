@@ -1,9 +1,6 @@
 {% comment %}
-  ============================================================================
   HALF_VERTICAL.LIQUID - Half-size Vertical Layout
-  ============================================================================
-  Vertical list of all 5 prayer times for compact displays
-  ============================================================================
+  Vertical list of all 5 prayer times in compact table format
 {% endcomment %}
 
 {% assign prayer_data = data %}
@@ -12,40 +9,32 @@
 
 <div class="layout">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--col gap--xsmall h--full p--2">
-      {% comment %} Fajr {% endcomment %}
-      <div class="flex flex--row flex--between items--center gap--small">
-        <span class="label label--small">Fajr</span>
-        <span class="value value--small md:value--medium value--tnums">{{ timings.Fajr }}</span>
-      </div>
-      <div class="divider"></div>
-
-      {% comment %} Dhuhr {% endcomment %}
-      <div class="flex flex--row flex--between items--center gap--small">
-        <span class="label label--small">Dhuhr</span>
-        <span class="value value--small md:value--medium value--tnums">{{ timings.Dhuhr }}</span>
-      </div>
-      <div class="divider"></div>
-
-      {% comment %} Asr {% endcomment %}
-      <div class="flex flex--row flex--between items--center gap--small">
-        <span class="label label--small">Asr</span>
-        <span class="value value--small md:value--medium value--tnums">{{ timings.Asr }}</span>
-      </div>
-      <div class="divider"></div>
-
-      {% comment %} Maghrib {% endcomment %}
-      <div class="flex flex--row flex--between items--center gap--small">
-        <span class="label label--small">Maghrib</span>
-        <span class="value value--small md:value--medium value--tnums">{{ timings.Maghrib }}</span>
-      </div>
-      <div class="divider"></div>
-
-      {% comment %} Isha {% endcomment %}
-      <div class="flex flex--row flex--between items--center gap--small">
-        <span class="label label--small">Isha</span>
-        <span class="value value--small md:value--medium value--tnums">{{ timings.Isha }}</span>
-      </div>
+    <div class="flex flex--col h--full p--2">
+      {% comment %} Prayer Times Table - Ultra Compact {% endcomment %}
+      <table class="table table--xsmall" data-table-limit="true">
+        <tbody>
+          <tr>
+            <td><span class="label label--small">Fajr</span></td>
+            <td><span class="value value--xsmall value--tnums">{{ timings.Fajr }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Dhuhr</span></td>
+            <td><span class="value value--xsmall value--tnums">{{ timings.Dhuhr }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Asr</span></td>
+            <td><span class="value value--xsmall value--tnums">{{ timings.Asr }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Maghrib</span></td>
+            <td><span class="value value--xsmall value--tnums">{{ timings.Maghrib }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label--small">Isha</span></td>
+            <td><span class="value value--xsmall value--tnums">{{ timings.Isha }}</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   {% else %}
     {% render "error_state", size: "half" %}
