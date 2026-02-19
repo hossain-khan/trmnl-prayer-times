@@ -1,3 +1,5 @@
+[![Installs](https://trmnl-badges.gohk.xyz/badge/installs?recipe=246906)](https://trmnl.com/recipes/246906) [![Forks](https://trmnl-badges.gohk.xyz/badge/forks?recipe=246906)](https://trmnl.com/recipes/246906)
+
 # 🕌 Islamic Prayer Times for TRMNL
 
 Display accurate Islamic prayer times on your TRMNL e-ink device or BYOD display. Shows all 5 daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha) with optional Islamic calendar dates in beautiful, responsive layouts.
