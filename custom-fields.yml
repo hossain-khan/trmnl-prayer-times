@@ -35,13 +35,16 @@
   options:
     - "Muslim World League (MWL) - Recommended": "3"
     - "Islamic Society of North America (ISNA)": "2"
-    - "Ummah Al-Qura Method": "1"
-    - "Egyptian General Authority": "5"
-    - "Karachi Method": "8"
-    - "Kuwait": "10"
-    - "Qatar": "9"
-    - "Morocco": "11"
-    - "Bahrain": "12"
+    - "University of Islamic Sciences, Karachi": "1"
+    - "Umm Al-Qura University, Makkah": "4"
+    - "Egyptian General Authority of Survey": "5"
+    - "Gulf Region": "8"
+    - "Kuwait": "9"
+    - "Qatar": "10"
+    - "Majlis Ugama Islam Singapura, Singapore": "11"
+    - "Union Organization islamic de France": "12"
+    - "Jabatan Kemajuan Islam Malaysia (JAKIM)": "17"
+    - "Morocco": "21"
 
 # Time Format: 12-hour or 24-hour format
 - keyname: time_format
