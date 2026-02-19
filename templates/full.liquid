@@ -12,44 +12,46 @@
 
 <div class="layout">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--col gap--medium h--full p--2">
-      {% comment %} Date Section {% endcomment %}
-      <div class="flex flex--row gap--medium flex--center-x">
-        <div class="flex flex--col gap--xsmall text--center flex-1">
-          <span class="label label--small">{{ gregorian.weekday.en }}</span>
-          <span class="title title--medium">{{ gregorian.day }} {{ gregorian.month.en }}</span>
+    <div class="flex flex--col gap--large h--full p--2">
+      {% comment %} Date Section - Large and Prominent {% endcomment %}
+      <div class="flex flex--row gap--large flex--center-x">
+        <div class="flex flex--col gap--small text--center flex-1">
+          <span class="label">{{ gregorian.weekday.en }}</span>
+          <span class="value value--large md:value--xlarge">{{ gregorian.day }}</span>
+          <span class="title title--medium md:title--large">{{ gregorian.month.en }}</span>
         </div>
         {% if show_hijri %}
         <div class="divider"></div>
-        <div class="flex flex--col gap--xsmall text--center flex-1">
-          <span class="label label--small">Islamic Date</span>
-          <span class="description">{{ hijri.day }} {{ hijri.month.en }}</span>
+        <div class="flex flex--col gap--small text--center flex-1">
+          <span class="label">Islamic Date</span>
+          <span class="value value--large md:value--xlarge">{{ hijri.day }}</span>
+          <span class="description md:label">{{ hijri.month.en }}</span>
         </div>
         {% endif %}
       </div>
 
-      {% comment %} Prayer Times Table {% endcomment %}
-      <table class="table table--small" data-table-limit="true">
+      {% comment %} Prayer Times Table - Spacious {% endcomment %}
+      <table class="table table--base" data-table-limit="true">
         <tbody>
           <tr>
-            <td><span class="label label--small">Fajr</span></td>
-            <td><span class="value value--small value--tnums">{{ timings.Fajr }}</span></td>
+            <td><span class="label md:label">Fajr</span></td>
+            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Fajr }}</span></td>
           </tr>
           <tr>
-            <td><span class="label label--small">Dhuhr</span></td>
-            <td><span class="value value--small value--tnums">{{ timings.Dhuhr }}</span></td>
+            <td><span class="label md:label">Dhuhr</span></td>
+            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Dhuhr }}</span></td>
           </tr>
           <tr>
-            <td><span class="label label--small">Asr</span></td>
-            <td><span class="value value--small value--tnums">{{ timings.Asr }}</span></td>
+            <td><span class="label md:label">Asr</span></td>
+            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Asr }}</span></td>
           </tr>
           <tr>
-            <td><span class="label label--small">Maghrib</span></td>
-            <td><span class="value value--small value--tnums">{{ timings.Maghrib }}</span></td>
+            <td><span class="label md:label">Maghrib</span></td>
+            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Maghrib }}</span></td>
           </tr>
           <tr>
-            <td><span class="label label--small">Isha</span></td>
-            <td><span class="value value--small value--tnums">{{ timings.Isha }}</span></td>
+            <td><span class="label md:label">Isha</span></td>
+            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Isha }}</span></td>
           </tr>
         </tbody>
       </table>
