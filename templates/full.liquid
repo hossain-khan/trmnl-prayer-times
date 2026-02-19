@@ -13,10 +13,10 @@
 
 <div class="layout" style="position: relative;">
   {% comment %} Corner Images {% endcomment %}
-  <img class="image image-dither" src="{{ icon_corner }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; width: 32px; height: 32px;">
+  <img class="image image-dither" src="{{ icon_corner }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; transform: scaleX(-1);">
   <img class="image image-dither" src="{{ icon_corner }}" alt="Corner Top-Right" style="position: absolute; top: 0; right: 0; width: 32px; height: 32px;">
-  <img class="image image-dither" src="{{ icon_corner }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px;">
-  <img class="image image-dither" src="{{ icon_corner }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px;">
+  <img class="image image-dither" src="{{ icon_corner }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px; transform: rotate(180deg);">
+  <img class="image image-dither" src="{{ icon_corner }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; transform: rotate(180deg) scaleX(-1);">
 
   {% if prayer_data and timings.Fajr %}
     <div class="flex flex--row flex--wrap flex--center-x gap--medium lg:gap--large p--1 lg:p--2">
