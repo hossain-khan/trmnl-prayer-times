@@ -1,93 +1,54 @@
 {% comment %}
   ============================================================================
-  HALF_HORIZONTAL.LIQUID - Half-size Horizontal Layout Template
+  HALF_HORIZONTAL.LIQUID - Half-size Horizontal Layout
   ============================================================================
-  Use this template for side-by-side content on half-width displays.
-  
-  Best For:
-  - Two-column layouts (data + details)
-  - Comparative displays
-  - Side-by-side information
-  
-  Device Sizes: Works across all devices (sm, md, lg)
-  Padding: p--2 (standard)
-  Responsive: Switches to vertical (flex--col) in portrait mode
-  
-  Structure:
-  - Two flex columns with gap
-  - Portrait fallback to column layout
-  - Compact spacing for limited width
+  Side-by-side prayer times layout for constrained width displays
+  Left: Fajr, Dhuhr, Asr
+  Right: Maghrib, Isha
   ============================================================================
 {% endcomment %}
 
+{% assign today = data[0] %}
+{% assign timings = today.timings %}
+{% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
+
 <div class="layout">
-  {% comment %} Check if data is available {% endcomment %}
-  {% if has_data %}
-  
-  {% comment %} 
-    Row layout on landscape, column on portrait
-    Left side: main content (flex: 1)
-    Right side: details (fixed or constrained width)
-  {% endcomment %}
-  <div class="flex flex--row gap--medium portrait:flex--col flex--center-y h--full">
-    
-    {% comment %} Main content area - left side on landscape {% endcomment %}
-    <div class="flex flex--center-x flex--center-y" style="flex: 1;">
-      <div class="text--center">
-        <div class="value value--medium md:value--large lg:value--xlarge value--tnums" data-value-fit="true" data-value-fit-max-height="180">
-          42
+  {% if today and timings.Fajr %}
+    <div class="flex flex--row gap--medium portrait:flex--col h--full p--2">
+      {% comment %} Left column: First 3 prayers {% endcomment %}
+      <div class="flex flex--col gap--small" style="flex: 1;">
+        <div class="text--center">
+          <span class="label label--small">Fajr</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Fajr }}</div>
         </div>
-        <div class="title title--small md:title--medium">
-          Main Value
+        <div class="divider"></div>
+        <div class="text--center">
+          <span class="label label--small">Dhuhr</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Dhuhr }}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="text--center">
+          <span class="label label--small">Asr</span>
+          <div class="value value--large md:value--xlarge value--tnums">{{ timings.Asr }}</div>
+        </div>
+      </div>
+
+      {% comment %} Right column: Last 2 prayers {% endcomment %}
+      <div class="flex flex--col gap--small" style="max-width: 150px; portrait:max-width: 100%;">
+        <div class="text--center">
+          <span class="label label--small">Maghrib</span>
+          <div class="value value--medium md:value--large value--tnums">{{ timings.Maghrib }}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="text--center">
+          <span class="label label--small">Isha</span>
+          <div class="value value--medium md:value--large value--tnums">{{ timings.Isha }}</div>
         </div>
       </div>
     </div>
-
-    {% comment %} Visual separator for landscape view {% endcomment %}
-    <div class="hidden portrait:hidden md:block">
-      <div class="divider portrait:hidden"></div>
-    </div>
-
-    {% comment %} Secondary content area - right side on landscape {% endcomment %}
-    <div class="grid grid--cols-1 gap--xsmall portrait:gap--small portrait:grid--cols-3" style="max-width: 200px; portrait:max-width: 100%;">
-      <div class="item text--center">
-        <div class="meta"></div>
-        <div class="content">
-          <div class="label label--small">Detail 1</div>
-          <div class="value value--small md:value--medium value--tnums">100</div>
-        </div>
-      </div>
-      <div class="item text--center">
-        <div class="meta"></div>
-        <div class="content">
-          <div class="label label--small">Detail 2</div>
-          <div class="value value--small md:value--medium value--tnums">50</div>
-        </div>
-      </div>
-      <div class="item text--center">
-        <div class="meta"></div>
-        <div class="content">
-          <div class="label label--small">Detail 3</div>
-          <div class="value value--small md:value--medium value--tnums">75</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   {% else %}
-  
-  {% comment %} Display error state when plugin is unconfigured {% endcomment %}
-  <div class="flex flex--col flex--center-x flex--center-y gap--small h--full">
-    <div class="value value--medium md:value--large">⚙️</div>
-    <div class="title title--small md:title--medium text--center">Setup Required</div>
-    <div class="description text--center">Configure plugin to begin.</div>
-  </div>
-  
+    {% render "error_state", size: "half" %}
   {% endif %}
 </div>
 
-{% comment %} Title bar at bottom {% endcomment %}
-<div class="title_bar">
-  <span class="title md:title--medium">Example Plugin</span>
-  <span class="instance">Half Horizontal</span>
-</div>
+{% render "title_bar", custom_title: custom_title, trmnl: trmnl %}

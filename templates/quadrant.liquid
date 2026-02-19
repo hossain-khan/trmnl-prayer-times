@@ -15,8 +15,8 @@
       <div class="title title--small md:title--medium text--center">Fajr</div>
     </div>
   {% else %}
-    {% render "shared", template_name: "error_state", size: "quadrant" %}
+    {% render "error_state", size: "quadrant" %}
   {% endif %}
 </div>
 
-{% render "shared", template_name: "title_bar", custom_title: custom_title %}
+{% render "title_bar", custom_title: custom_title, trmnl: trmnl %}

@@ -53,8 +53,8 @@
       </div>
     </div>
   {% else %}
-    {% render "shared", template_name: "error_state", size: "full" %}
+    {% render "error_state", size: "full" %}
   {% endif %}
 </div>
 
-{% render "shared", template_name: "title_bar", custom_title: custom_title %}
+{% render "title_bar", custom_title: custom_title, trmnl: trmnl %}

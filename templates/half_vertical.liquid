@@ -1,89 +1,55 @@
 {% comment %}
   ============================================================================
-  HALF_VERTICAL.LIQUID - Half-size Vertical Layout Template
+  HALF_VERTICAL.LIQUID - Half-size Vertical Layout
   ============================================================================
-  Use this template for top-bottom stacked content on half-height displays.
-  
-  Best For:
-  - Stacked layouts (primary + secondary content)
-  - Top/bottom split displays
-  - Compact vertical layouts
-  
-  Device Sizes: Works across all devices (sm, md, lg)
-  Padding: p--2 (standard)
-  
-  Structure:
-  - Primary content fills available space (flex: 1)
-  - Secondary content at bottom
-  - Minimal gap to maximize space
+  Vertical list of all 5 prayer times for compact displays
   ============================================================================
 {% endcomment %}
 
+{% assign today = data[0] %}
+{% assign timings = today.timings %}
+{% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
+
 <div class="layout">
-  {% comment %} Check if data is available {% endcomment %}
-  {% if has_data %}
-  
-  <div class="flex flex--col gap--small h--full">
-    
-    {% comment %}
-      Primary content area - fills available space
-      Uses richtext pattern for complex, formatted content
-      See Advanced Layout Patterns section in copilot-instructions
-    {% endcomment %}
-    <div class="flex flex--center-x flex--center-y" style="flex: 1;">
-      <div class="richtext richtext--center gap--small">
-        <div class="content content--center gap--xsmall text--center">
-          <div class="value value--xxlarge md:value--xxxlarge" data-clamp="1">
-            📊
-          </div>
-          <div class="title title--medium md:title--large">
-            Current Status
-          </div>
-          <div class="description md:title md:title--small" data-clamp="2">
-            {{ status_description | default: "Everything is configured correctly" }}
-          </div>
-        </div>
+  {% if today and timings.Fajr %}
+    <div class="flex flex--col gap--xsmall h--full p--2">
+      {% comment %} Fajr {% endcomment %}
+      <div class="flex flex--row flex--between items--center gap--small">
+        <span class="label label--small">Fajr</span>
+        <span class="value value--small md:value--medium value--tnums">{{ timings.Fajr }}</span>
+      </div>
+      <div class="divider"></div>
+
+      {% comment %} Dhuhr {% endcomment %}
+      <div class="flex flex--row flex--between items--center gap--small">
+        <span class="label label--small">Dhuhr</span>
+        <span class="value value--small md:value--medium value--tnums">{{ timings.Dhuhr }}</span>
+      </div>
+      <div class="divider"></div>
+
+      {% comment %} Asr {% endcomment %}
+      <div class="flex flex--row flex--between items--center gap--small">
+        <span class="label label--small">Asr</span>
+        <span class="value value--small md:value--medium value--tnums">{{ timings.Asr }}</span>
+      </div>
+      <div class="divider"></div>
+
+      {% comment %} Maghrib {% endcomment %}
+      <div class="flex flex--row flex--between items--center gap--small">
+        <span class="label label--small">Maghrib</span>
+        <span class="value value--small md:value--medium value--tnums">{{ timings.Maghrib }}</span>
+      </div>
+      <div class="divider"></div>
+
+      {% comment %} Isha {% endcomment %}
+      <div class="flex flex--row flex--between items--center gap--small">
+        <span class="label label--small">Isha</span>
+        <span class="value value--small md:value--medium value--tnums">{{ timings.Isha }}</span>
       </div>
     </div>
-
-    {% comment %} Modern divider separating top and bottom content {% endcomment %}
-    <div class="divider"></div>
-
-    {% comment %}
-      Secondary content area - at bottom
-      Grid layout provides better metric alignment
-      Uses value--tnums for tabular number display
-    {% endcomment %}
-    <div class="grid grid--cols-3 gap--xsmall text--center">
-      <div>
-        <div class="label label--small">Last</div>
-        <div class="value value--xsmall value--tnums">{{ last_value | default: "—" }}</div>
-      </div>
-      <div>
-        <div class="label label--small">Average</div>
-        <div class="value value--xsmall value--tnums">{{ average_value | default: "—" }}</div>
-      </div>
-      <div>
-        <div class="label label--small">Best</div>
-        <div class="value value--xsmall value--tnums">{{ best_value | default: "—" }}</div>
-      </div>
-    </div>
-  </div>
-
   {% else %}
-  
-  {% comment %} Display error state when plugin is unconfigured {% endcomment %}
-  <div class="flex flex--col flex--center-x flex--center-y gap--small h--full">
-    <div class="value value--medium md:value--large">⚙️</div>
-    <div class="title title--small md:title--medium text--center">Setup Required</div>
-    <div class="description text--center">Configure plugin to begin.</div>
-  </div>
-  
+    {% render "error_state", size: "half" %}
   {% endif %}
 </div>
 
-{% comment %} Title bar at bottom {% endcomment %}
-<div class="title_bar">
-  <span class="title md:title--medium">Example Plugin</span>
-  <span class="instance">Half Vertical</span>
-</div>
+{% render "title_bar", custom_title: custom_title, trmnl: trmnl %}

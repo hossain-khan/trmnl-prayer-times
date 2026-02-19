@@ -3,7 +3,7 @@
   SHARED.LIQUID - Prayer Times Plugin Components
   ============================================================================
   Reusable templates for prayer times display
-  Usage: {% render "shared", template_name: "component_name", param: value %}
+  Usage: {% render "component_name", param: value %}
   ============================================================================
 {% endcomment %}
 
@@ -66,12 +66,15 @@
 
 {% comment %}
   TITLE BAR - Standard header for all layouts
+  Note: trmnl variable passed in render call to access plugin settings
 {% endcomment %}
 {% template title_bar %}
 <div class="title_bar">
   <span class="title md:title--large">
     {% if custom_title and custom_title != '' %}
       {{ custom_title }}
+    {% elsif trmnl.plugin_settings.custom_fields_values.custom_title and trmnl.plugin_settings.custom_fields_values.custom_title != '' %}
+      {{ trmnl.plugin_settings.custom_fields_values.custom_title }}
     {% else %}
       Prayer Times
     {% endif %}
