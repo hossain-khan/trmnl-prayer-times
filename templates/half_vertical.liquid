@@ -1,56 +1,43 @@
 {% comment %}
   HALF_VERTICAL.LIQUID - Half-size Vertical Layout
-  Responsive flexbox layout with auto-scaling prayer times
+  Wrapping flexbox layout with outlined prayer cards
 {% endcomment %}
 
 {% assign prayer_data = data %}
 {% assign timings = prayer_data.timings %}
 {% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
 
-<div class="layout layout--col layout--stretch">
+<div class="layout">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--col flex--stretch h--full p--1 md:p--2" style="gap: 0.25rem;">
-      {% comment %} Prayer Times - Each row stretches to fill height {% endcomment %}
-      <div class="flex flex--col flex--stretch-y" style="flex: 1;">
-        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
-          <span class="label md:title--small">Fajr</span>
-          <span class="value value--large md:value--xlarge value--tnums" 
-                data-value-fit="true" 
-                data-value-fit-max-height="80"
-                style="flex: 1; text-align: right;">{{ timings.Fajr }}</span>
-        </div>
+    <div class="flex flex--row flex--wrap gap--small p--1" style="justify-content: center;">
+      {% comment %} Fajr {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 75px; text-align: center;">
+        <span class="label label--small">Fajr</span>
+        <span class="value value--small value--tnums" data-value-fit="true" data-value-fit-max-height="40">{{ timings.Fajr }}</span>
+      </div>
 
-        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
-          <span class="label md:title--small">Dhuhr</span>
-          <span class="value value--large md:value--xlarge value--tnums" 
-                data-value-fit="true" 
-                data-value-fit-max-height="80"
-                style="flex: 1; text-align: right;">{{ timings.Dhuhr }}</span>
-        </div>
+      {% comment %} Dhuhr {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 75px; text-align: center;">
+        <span class="label label--small">Dhuhr</span>
+        <span class="value value--small value--tnums" data-value-fit="true" data-value-fit-max-height="40">{{ timings.Dhuhr }}</span>
+      </div>
 
-        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
-          <span class="label md:title--small">Asr</span>
-          <span class="value value--large md:value--xlarge value--tnums" 
-                data-value-fit="true" 
-                data-value-fit-max-height="80"
-                style="flex: 1; text-align: right;">{{ timings.Asr }}</span>
-        </div>
+      {% comment %} Asr {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 75px; text-align: center;">
+        <span class="label label--small">Asr</span>
+        <span class="value value--small value--tnums" data-value-fit="true" data-value-fit-max-height="40">{{ timings.Asr }}</span>
+      </div>
 
-        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
-          <span class="label md:title--small">Maghrib</span>
-          <span class="value value--large md:value--xlarge value--tnums" 
-                data-value-fit="true" 
-                data-value-fit-max-height="80"
-                style="flex: 1; text-align: right;">{{ timings.Maghrib }}</span>
-        </div>
+      {% comment %} Maghrib {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 75px; text-align: center;">
+        <span class="label label--small">Maghrib</span>
+        <span class="value value--small value--tnums" data-value-fit="true" data-value-fit-max-height="40">{{ timings.Maghrib }}</span>
+      </div>
 
-        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
-          <span class="label md:title--small">Isha</span>
-          <span class="value value--large md:value--xlarge value--tnums" 
-                data-value-fit="true" 
-                data-value-fit-max-height="80"
-                style="flex: 1; text-align: right;">{{ timings.Isha }}</span>
-        </div>
+      {% comment %} Isha {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 75px; text-align: center;">
+        <span class="label label--small">Isha</span>
+        <span class="value value--small value--tnums" data-value-fit="true" data-value-fit-max-height="40">{{ timings.Isha }}</span>
       </div>
     </div>
   {% else %}

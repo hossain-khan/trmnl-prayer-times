@@ -1,21 +1,20 @@
 {% comment %}
   QUADRANT LAYOUT - Prayer Times Compact
-  Shows Fajr (first prayer) in most compact form with auto-scaling
+  Single outlined card showing Fajr (first prayer) in most compact form
 {% endcomment %}
 
 {% assign prayer_data = data %}
 {% assign timings = prayer_data.timings %}
 {% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
 
-<div class="layout layout--col layout--stretch">
+<div class="layout">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--col flex--center-x flex--center-y h--full p--1" style="gap: 0.25rem;">
-      {% comment %} Show Fajr (first prayer of the day) with auto-scaling {% endcomment %}
-      <span class="title title--medium md:title--large">Fajr</span>
-      <span class="value value--xxxlarge value--tnums" 
-            data-value-fit="true" 
-            data-value-fit-max-height="100"
-            style="flex: 0.8; display: flex; align-items: center;">{{ timings.Fajr }}</span>
+    <div class="flex flex--row flex--wrap gap--small p--1" style="justify-content: center;">
+      {% comment %} Fajr - Single outlined card {% endcomment %}
+      <div class="outline flex flex--col flex--center gap--xsmall p--1" style="flex: 0 1 auto; min-width: 80px; text-align: center;">
+        <span class="label label--small">Fajr</span>
+        <span class="value value--medium value--tnums" data-value-fit="true" data-value-fit-max-height="45">{{ timings.Fajr }}</span>
+      </div>
     </div>
   {% else %}
     {% render "error_state", size: "quadrant" %}
