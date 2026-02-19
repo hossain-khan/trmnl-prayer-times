@@ -1,18 +1,21 @@
 {% comment %}
   QUADRANT LAYOUT - Prayer Times Compact
-  Shows Fajr (first prayer) in most compact form
+  Shows Fajr (first prayer) in most compact form with auto-scaling
 {% endcomment %}
 
 {% assign prayer_data = data %}
 {% assign timings = prayer_data.timings %}
 {% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
 
-<div class="layout">
+<div class="layout layout--col layout--stretch">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--col flex--center-x flex--center-y h--full gap--xsmall p--1">
-      {% comment %} Show Fajr (first prayer of the day) in quadrant view {% endcomment %}
-      <div class="value value--large md:value--xlarge value--tnums">{{ timings.Fajr }}</div>
-      <div class="title title--small md:title--medium text--center">Fajr</div>
+    <div class="flex flex--col flex--center-x flex--center-y h--full p--1" style="gap: 0.25rem;">
+      {% comment %} Show Fajr (first prayer of the day) with auto-scaling {% endcomment %}
+      <span class="title title--medium md:title--large">Fajr</span>
+      <span class="value value--xxxlarge value--tnums" 
+            data-value-fit="true" 
+            data-value-fit-max-height="100"
+            style="flex: 0.8; display: flex; align-items: center;">{{ timings.Fajr }}</span>
     </div>
   {% else %}
     {% render "error_state", size: "quadrant" %}

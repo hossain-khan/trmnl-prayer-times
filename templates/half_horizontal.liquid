@@ -1,40 +1,57 @@
 {% comment %}
   HALF_HORIZONTAL.LIQUID - Half-size Horizontal Layout
-  Side-by-side prayer times layout in a compact table format
+  Responsive flexbox layout with auto-scaling prayer times
 {% endcomment %}
 
 {% assign prayer_data = data %}
 {% assign timings = prayer_data.timings %}
 {% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
 
-<div class="layout">
+<div class="layout layout--col layout--stretch">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--col h--full p--2">
-      {% comment %} Prayer Times Table - Compact {% endcomment %}
-      <table class="table table--xsmall" data-table-limit="true">
-        <tbody>
-          <tr>
-            <td><span class="label label--small">Fajr</span></td>
-            <td><span class="value value--xsmall value--tnums">{{ timings.Fajr }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label--small">Dhuhr</span></td>
-            <td><span class="value value--xsmall value--tnums">{{ timings.Dhuhr }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label--small">Asr</span></td>
-            <td><span class="value value--xsmall value--tnums">{{ timings.Asr }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label--small">Maghrib</span></td>
-            <td><span class="value value--xsmall value--tnums">{{ timings.Maghrib }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label--small">Isha</span></td>
-            <td><span class="value value--xsmall value--tnums">{{ timings.Isha }}</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="flex flex--col flex--stretch h--full p--1 md:p--2" style="gap: 0.25rem;">
+      {% comment %} Prayer Times - Each row stretches to fill height {% endcomment %}
+      <div class="flex flex--col flex--stretch-y" style="flex: 1;">
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
+          <span class="label md:title--small">Fajr</span>
+          <span class="value value--large md:value--xlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="80"
+                style="flex: 1; text-align: right;">{{ timings.Fajr }}</span>
+        </div>
+
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
+          <span class="label md:title--small">Dhuhr</span>
+          <span class="value value--large md:value--xlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="80"
+                style="flex: 1; text-align: right;">{{ timings.Dhuhr }}</span>
+        </div>
+
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
+          <span class="label md:title--small">Asr</span>
+          <span class="value value--large md:value--xlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="80"
+                style="flex: 1; text-align: right;">{{ timings.Asr }}</span>
+        </div>
+
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
+          <span class="label md:title--small">Maghrib</span>
+          <span class="value value--large md:value--xlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="80"
+                style="flex: 1; text-align: right;">{{ timings.Maghrib }}</span>
+        </div>
+
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1;">
+          <span class="label md:title--small">Isha</span>
+          <span class="value value--large md:value--xlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="80"
+                style="flex: 1; text-align: right;">{{ timings.Isha }}</span>
+        </div>
+      </div>
     </div>
   {% else %}
     {% render "error_state", size: "half" %}

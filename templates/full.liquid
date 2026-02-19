@@ -1,6 +1,7 @@
 {% comment %}
   FULL LAYOUT - Prayer Times Display
-  Shows all 5 prayers in a clean table format with date information
+  Responsive flexbox layout that scales to 100% height/width
+  Prayer times auto-fit to available space
 {% endcomment %}
 
 {% assign prayer_data = data %}
@@ -10,51 +11,73 @@
 {% assign custom_title = trmnl.plugin_settings.custom_fields_values.custom_title %}
 {% assign show_hijri = trmnl.plugin_settings.custom_fields_values.show_hijri_date %}
 
-<div class="layout">
+<div class="layout layout--col layout--stretch">
   {% if prayer_data and timings.Fajr %}
-    <div class="flex flex--col gap--large h--full p--2">
-      {% comment %} Date Section - Large and Prominent {% endcomment %}
-      <div class="flex flex--row gap--large flex--center-x">
-        <div class="flex flex--col gap--small text--center flex-1">
+    <div class="flex flex--col flex--stretch h--full p--2" style="gap: 0.5rem;">
+      {% comment %} Date Section - Top of screen {% endcomment %}
+      <div class="flex flex--row gap--medium flex--center-x no-shrink">
+        <div class="flex flex--col gap--xsmall text--center">
           <span class="label">{{ gregorian.weekday.en }}</span>
-          <span class="value value--large md:value--xlarge">{{ gregorian.day }}</span>
-          <span class="title title--medium md:title--large">{{ gregorian.month.en }}</span>
+          <span class="value value--xlarge lg:value--xxxlarge">{{ gregorian.day }}</span>
+          <span class="title title--large lg:title--xlarge">{{ gregorian.month.en }}</span>
         </div>
         {% if show_hijri %}
-        <div class="divider"></div>
-        <div class="flex flex--col gap--small text--center flex-1">
-          <span class="label">Islamic Date</span>
-          <span class="value value--large md:value--xlarge">{{ hijri.day }}</span>
-          <span class="description md:label">{{ hijri.month.en }}</span>
+        <div class="divider" style="height: 2rem;"></div>
+        <div class="flex flex--col gap--xsmall text--center">
+          <span class="label">{{ hijri.month.en }}</span>
+          <span class="value value--xlarge lg:value--xxxlarge">{{ hijri.day }}</span>
+          <span class="description md:label">{{ hijri.year }}</span>
         </div>
         {% endif %}
       </div>
 
-      {% comment %} Prayer Times Table - Spacious {% endcomment %}
-      <table class="table table--base" data-table-limit="true">
-        <tbody>
-          <tr>
-            <td><span class="label md:label">Fajr</span></td>
-            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Fajr }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label md:label">Dhuhr</span></td>
-            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Dhuhr }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label md:label">Asr</span></td>
-            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Asr }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label md:label">Maghrib</span></td>
-            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Maghrib }}</span></td>
-          </tr>
-          <tr>
-            <td><span class="label md:label">Isha</span></td>
-            <td><span class="value value--medium md:value--large value--tnums">{{ timings.Isha }}</span></td>
-          </tr>
-        </tbody>
-      </table>
+      {% comment %} Prayer Times - Each row stretches to fill available height {% endcomment %}
+      <div class="flex flex--col flex--stretch-y gap--small" style="flex: 1;">
+        {% comment %} Fajr {% endcomment %}
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1; padding: 0.5rem 0;">
+          <span class="title title--medium md:title--large lg:title--xlarge">Fajr</span>
+          <span class="value value--xxxlarge md:value--xxxlarge lg:value--xxxlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="120"
+                style="flex: 1; text-align: right;">{{ timings.Fajr }}</span>
+        </div>
+
+        {% comment %} Dhuhr {% endcomment %}
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1; padding: 0.5rem 0;">
+          <span class="title title--medium md:title--large lg:title--xlarge">Dhuhr</span>
+          <span class="value value--xxxlarge md:value--xxxlarge lg:value--xxxlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="120"
+                style="flex: 1; text-align: right;">{{ timings.Dhuhr }}</span>
+        </div>
+
+        {% comment %} Asr {% endcomment %}
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1; padding: 0.5rem 0;">
+          <span class="title title--medium md:title--large lg:title--xlarge">Asr</span>
+          <span class="value value--xxxlarge md:value--xxxlarge lg:value--xxxlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="120"
+                style="flex: 1; text-align: right;">{{ timings.Asr }}</span>
+        </div>
+
+        {% comment %} Maghrib {% endcomment %}
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1; padding: 0.5rem 0;">
+          <span class="title title--medium md:title--large lg:title--xlarge">Maghrib</span>
+          <span class="value value--xxxlarge md:value--xxxlarge lg:value--xxxlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="120"
+                style="flex: 1; text-align: right;">{{ timings.Maghrib }}</span>
+        </div>
+
+        {% comment %} Isha {% endcomment %}
+        <div class="flex flex--row flex--center-y flex--stretch-x" style="flex: 1; padding: 0.5rem 0;">
+          <span class="title title--medium md:title--large lg:title--xlarge">Isha</span>
+          <span class="value value--xxxlarge md:value--xxxlarge lg:value--xxxlarge value--tnums" 
+                data-value-fit="true" 
+                data-value-fit-max-height="120"
+                style="flex: 1; text-align: right;">{{ timings.Isha }}</span>
+        </div>
+      </div>
     </div>
   {% else %}
     {% render "error_state", size: "full" %}
