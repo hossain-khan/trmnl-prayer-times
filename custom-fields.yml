@@ -7,6 +7,16 @@
 # Values become available in templates via:
 #   {{ trmnl.plugin_settings.custom_fields_values.keyname }}
 
+# Plugin Information: About this Prayer Times plugin
+- keyname: author_bio
+  field_type: author_bio
+  name: About This Plugin
+  description: Display accurate Islamic prayer times for your location with Hijri calendar, 12/24-hour format options, and responsive layouts for all TRMNL devices.
+  category: life,productivity
+  github_url: https://github.com/hossain-khan/trmnl-prayer-times
+  email_address: hossain@example.com
+  learn_more_url: https://github.com/hossain-khan/trmnl-prayer-times#readme
+
 # Latitude: User's geographic latitude
 - keyname: latitude
   field_type: string
