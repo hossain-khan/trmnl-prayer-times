@@ -43,7 +43,7 @@
           <div class="flex flex--col gap--xsmall">
             <img class="image image-dither w--[35px] h--[35px] lg:w--[45px] lg:h--[45px]" src="{{ icon_sunrise }}" alt="Sunrise" style="object-fit: contain; margin: 0 auto;">
             <span class="label label--small lg:label--medium">Sunrise</span>
-            <span class="value value--small lg:value--large value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: sunrise %}{% else %}{{ sunrise }}{% endif %}</span>
+            <span class="value value--small lg:value value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: sunrise %}{% else %}{{ sunrise }}{% endif %}</span>
           </div>
         </div>
       </div>
