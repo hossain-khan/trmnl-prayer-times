@@ -9,10 +9,10 @@
 
 <div class="layout" style="position: relative;">
   {% comment %} Corner Images - 30% of layout with container query responsive sizing {% endcomment %}
-  <img class="image image-dither w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; transform: scaleX(-1); object-fit: contain; object-position: top right;">
-  <img class="image image-dither w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Top-Right" style="position: absolute; top: 0; right: 0; object-fit: contain; object-position: top right;">
-  <img class="image image-dither w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; transform: rotate(180deg); object-fit: contain; object-position: bottom right;">
-  <img class="image image-dither w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; transform: rotate(180deg) scaleX(-1); object-fit: contain; object-position: bottom right;">
+  <img class="image image-dither ml--1 mt--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; transform: scaleX(-1); object-fit: contain; object-position: top right;">
+  <img class="image image-dither mr--1 mt--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Top-Right" style="position: absolute; top: 0; right: 0; object-fit: contain; object-position: top right;">
+  <img class="image image-dither ml--1 mb--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; transform: rotate(180deg); object-fit: contain; object-position: bottom right;">
+  <img class="image image-dither mr--1 mb--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; transform: rotate(180deg) scaleX(-1); object-fit: contain; object-position: bottom right;">
 
   {% if prayer_data and timings.Fajr %}
     <div class="flex flex--row flex--wrap flex--center-x gap--small lg:gap--medium p--1">
