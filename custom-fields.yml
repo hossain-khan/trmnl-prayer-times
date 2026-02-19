@@ -68,6 +68,6 @@
 - keyname: custom_title
   field_type: string
   name: Custom Plugin Title
-  placeholder: "Islamic Prayer Times"
-  description: "Override the default 'Islamic Prayer Times' title"
+  placeholder: "Prayer Times"
+  description: "Override the default 'Prayer Times' title"
   optional: true
