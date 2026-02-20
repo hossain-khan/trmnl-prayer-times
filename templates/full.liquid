@@ -15,17 +15,17 @@
 
 <div class="layout" style="position: relative;">
   {% comment %} Corner Images - 20% of layout with container query responsive sizing {% endcomment %}
-  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[16cqw] md:h--[16cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; transform: scaleX(-1); object-fit: contain; object-position: top right;">
-  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[16cqw] md:h--[16cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Top-Right" style="position: absolute; top: 0; right: 0; object-fit: contain; object-position: top right;">
-  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[16cqw] md:h--[16cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; transform: rotate(180deg); object-fit: contain; object-position: bottom right;">
-  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[16cqw] md:h--[16cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; transform: rotate(180deg) scaleX(-1); object-fit: contain; object-position: bottom right;">
+  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[18cqw] md:h--[18cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; transform: scaleX(-1); object-fit: contain; object-position: top right;">
+  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[18cqw] md:h--[18cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Top-Right" style="position: absolute; top: 0; right: 0; object-fit: contain; object-position: top right;">
+  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[18cqw] md:h--[18cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; transform: rotate(180deg); object-fit: contain; object-position: bottom right;">
+  <img class="image image-dither w--[20cqw] h--[20cqh] md:w--[18cqw] md:h--[18cqh] lg:w--[12cqw] lg:h--[12cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; transform: rotate(180deg) scaleX(-1); object-fit: contain; object-position: bottom right;">
 
   {% if prayer_data and timings.Fajr %}
     <div class="flex flex--row flex--wrap flex--center-x gap--medium lg:gap--large p--1 lg:p--2">
       {% comment %} Date Section - Full width at top {% endcomment %}
       <div class="flex flex--col gap--xsmall text--center p--1 w--full border--h-6">
         <div class="flex flex--row gap--medium flex--center-x flex--center-y">
-          <img class="image image-dither w--[80px] h--[80px] lg:w--[110px] lg:h--[110px]" src="{{ icon_praying }}" alt="Praying" style="object-fit: contain;">
+          <img class="image image-dither w--[90px] h--[90px] lg:w--[120px] lg:h--[120px]" src="{{ icon_praying }}" alt="Praying" style="object-fit: contain;">
           <div class="flex flex--col gap--xsmall">
             <span class="label label--small lg:label--medium">{{ gregorian.weekday.en }}</span>
             <span class="value value--large lg:value--xlarge">{{ gregorian.day }}</span>
@@ -41,7 +41,7 @@
           {% endif %}
           <div class="divider h--8 lg:h--10"></div>
           <div class="flex flex--col gap--xsmall">
-            <img class="image image-dither w--[35px] h--[35px] lg:w--[45px] lg:h--[45px]" src="{{ icon_sunrise }}" alt="Sunrise" style="object-fit: contain; margin: 0 auto;">
+            <img class="image image-dither w--[40px] h--[40px] lg:w--[50px] lg:h--[50px]" src="{{ icon_sunrise }}" alt="Sunrise" style="object-fit: contain; margin: 0 auto;">
             <span class="label label--small lg:label--medium">Sunrise</span>
             <span class="value value--small lg:value value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: sunrise %}{% else %}{{ sunrise }}{% endif %}</span>
           </div>
