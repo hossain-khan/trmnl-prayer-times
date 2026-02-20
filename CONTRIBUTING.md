@@ -27,7 +27,7 @@ Have an idea to make the template better?
 
 1. **Fork the repository**
    ```bash
-   git clone https://github.com/your-username/trmnl-plugin-template.git
+   git clone https://github.com/hossain-khan/trmnl-prayer-times.git
    ```
 
 2. **Create a feature branch**
