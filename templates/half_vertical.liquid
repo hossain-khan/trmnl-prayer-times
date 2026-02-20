@@ -10,41 +10,41 @@
 
 <div class="layout" style="position: relative;">
   {% comment %} Corner Images - 30% of layout with container query responsive sizing {% endcomment %}
-  <img class="image image-dither ml--1 mt--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; transform: scaleX(-1); object-fit: contain; object-position: top right;">
-  <img class="image image-dither mr--1 mt--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Top-Right" style="position: absolute; top: 0; right: 0; object-fit: contain; object-position: top right;">
-  <img class="image image-dither ml--1 mb--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; transform: rotate(180deg); object-fit: contain; object-position: bottom right;">
-  <img class="image image-dither mr--1 mb--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; transform: rotate(180deg) scaleX(-1); object-fit: contain; object-position: bottom right;">
+  <img class="image image-dither ml--1 mt--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner_geometric }}" alt="Corner Top-Left" style="position: absolute; top: 0; left: 0; transform: scaleX(-1); object-fit: contain; object-position: top right;">
+  <img class="image image-dither mr--1 mt--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner_geometric }}" alt="Corner Top-Right" style="position: absolute; top: 0; right: 0; object-fit: contain; object-position: top right;">
+  <img class="image image-dither ml--1 mb--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner_geometric }}" alt="Corner Bottom-Left" style="position: absolute; bottom: 0; left: 0; transform: rotate(180deg); object-fit: contain; object-position: bottom right;">
+  <img class="image image-dither mr--1 mb--1 w--[30cqw] h--[30cqh] md:w--[24cqw] md:h--[24cqh] lg:w--[18cqw] lg:h--[18cqh]" src="{{ icon_corner_geometric }}" alt="Corner Bottom-Right" style="position: absolute; bottom: 0; right: 0; transform: rotate(180deg) scaleX(-1); object-fit: contain; object-position: bottom right;">
 
   {% if prayer_data and timings.Fajr %}
     <div class="flex flex--row flex--wrap flex--center-x gap--small lg:gap--medium p--1">
       {% comment %} Fajr {% endcomment %}
       <div class="outline flex flex--col flex--center gap--small p--1 w--min-[90px] lg:w--min-[120px] text--center">
         <span class="label label--medium lg:label--large label--inverted mt--2">Fajr</span>
-        <span class="value value--medium lg:value--xlarge value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Fajr %}{% else %}{{ timings.Fajr }}{% endif %}</span>
+        <span class="value value--medium lg:value--large value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Fajr %}{% else %}{{ timings.Fajr }}{% endif %}</span>
       </div>
 
       {% comment %} Dhuhr {% endcomment %}
       <div class="outline flex flex--col flex--center gap--small p--1 w--min-[90px] lg:w--min-[120px] text--center">
         <span class="label label--medium lg:label--large label--inverted mt--2">Dhuhr</span>
-        <span class="value value--medium lg:value--xlarge value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Dhuhr %}{% else %}{{ timings.Dhuhr }}{% endif %}</span>
+        <span class="value value--medium lg:value--large value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Dhuhr %}{% else %}{{ timings.Dhuhr }}{% endif %}</span>
       </div>
 
       {% comment %} Asr {% endcomment %}
       <div class="outline flex flex--col flex--center gap--small p--1 w--min-[90px] lg:w--min-[120px] text--center">
         <span class="label label--medium lg:label--large label--inverted mt--2">Asr</span>
-        <span class="value value--medium lg:value--xlarge value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Asr %}{% else %}{{ timings.Asr }}{% endif %}</span>
+        <span class="value value--medium lg:value--large value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Asr %}{% else %}{{ timings.Asr }}{% endif %}</span>
       </div>
 
       {% comment %} Maghrib {% endcomment %}
       <div class="outline flex flex--col flex--center gap--small p--1 w--min-[90px] lg:w--min-[120px] text--center">
         <span class="label label--medium lg:label--large label--inverted mt--2">Maghrib</span>
-        <span class="value value--medium lg:value--xlarge value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Maghrib %}{% else %}{{ timings.Maghrib }}{% endif %}</span>
+        <span class="value value--medium lg:value--large value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Maghrib %}{% else %}{{ timings.Maghrib }}{% endif %}</span>
       </div>
 
       {% comment %} Isha {% endcomment %}
       <div class="outline flex flex--col flex--center gap--small p--1 w--min-[90px] lg:w--min-[120px] text--center">
         <span class="label label--medium lg:label--large label--inverted mt--2">Isha</span>
-        <span class="value value--medium lg:value--xlarge value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Isha %}{% else %}{{ timings.Isha }}{% endif %}</span>
+        <span class="value value--medium lg:value--large value--tnums" data-value-fit="true">{% if time_format == '12h' %}{% render "format_time_12h", time: timings.Isha %}{% else %}{{ timings.Isha }}{% endif %}</span>
       </div>
     </div>
   {% else %}
