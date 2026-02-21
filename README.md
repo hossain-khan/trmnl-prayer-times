@@ -1,4 +1,4 @@
-[![Installs](https://trmnl-badges.gohk.xyz/badge/installs?recipe=246906)](https://trmnl.com/recipes/246906) [![Forks](https://trmnl-badges.gohk.xyz/badge/forks?recipe=246906)](https://trmnl.com/recipes/246906)
+[![Validate Liquid & YAML](https://github.com/hossain-khan/trmnl-prayer-times/actions/workflows/validate.yml/badge.svg)](https://github.com/hossain-khan/trmnl-prayer-times/actions/workflows/validate.yml) [![Installs](https://trmnl-badges.gohk.xyz/badge/installs?recipe=246906)](https://trmnl.com/recipes/246906) [![Forks](https://trmnl-badges.gohk.xyz/badge/forks?recipe=246906)](https://trmnl.com/recipes/246906)
 
 # 🕌 Islamic Prayer Times for TRMNL
 
