@@ -42,22 +42,11 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install dependencies
-        run: npm install --save-dev @shopify/theme-check
+      - name: Install theme-check
+        run: npm install --save-dev @shopify/theme-check-node
 
       - name: Validate Liquid templates
-        run: npx theme-check templates/ --print-json || true
-        continue-on-error: true
-
-      - name: Custom Liquid syntax check
-        run: |
-          for file in templates/*.liquid; do
-            echo "Checking $file..."
-            # Basic Liquid syntax validation
-            if grep -q '{%' "$file" || grep -q '{{' "$file"; then
-              echo "✓ $file contains valid Liquid syntax markers"
-            fi
-          done
+        run: npx theme-check templates/ --print-json
 
   lint:
     name: Lint Configuration Files
@@ -80,35 +69,4 @@ jobs:
             echo "Warning: settings.yml appears to be empty or malformed"
           else
             echo "✓ settings.yml has expected structure"
-          fi
-
-      - name: Check for common Liquid errors
-        run: |
-          set +e
-          errors=0
-          
-          # Check for unclosed tags
-          for file in templates/*.liquid; do
-            # Count opening and closing tags
-            open_if=$(grep -o '{%\s*if' "$file" 2>/dev/null | wc -l)
-            close_if=$(grep -o '{%\s*endif' "$file" 2>/dev/null | wc -l)
-            
-            if [ "$open_if" -ne "$close_if" ]; then
-              echo "✗ $file: Mismatched if/endif tags"
-              errors=$((errors + 1))
-            fi
-            
-            open_for=$(grep -o '{%\s*for' "$file" 2>/dev/null | wc -l)
-            close_for=$(grep -o '{%\s*endfor' "$file" 2>/dev/null | wc -l)
-            
-            if [ "$open_for" -ne "$close_for" ]; then
-              echo "✗ $file: Mismatched for/endfor tags"
-              errors=$((errors + 1))
-            fi
-          done
-          
-          if [ $errors -eq 0 ]; then
-            echo "✓ All Liquid templates have balanced tags"
-          else
-            exit 1
           fi
