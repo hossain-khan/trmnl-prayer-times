@@ -1,23 +1,26 @@
 {
-  "name": "trmnl-plugin-template",
+  "name": "trmnl-prayer-times",
   "version": "1.0.0",
-  "description": "A production-ready template for creating TRMNL plugins",
+  "description": "TRMNL plugin to display Islamic prayer times using Aladhan API",
   "keywords": [
     "trmnl",
     "plugin",
     "e-ink",
-    "template",
+    "prayer-times",
+    "islamic",
+    "salah",
+    "aladhan",
     "liquid"
   ],
-  "author": "Your Name",
+  "author": "Hossain Khan",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/your-plugin-name.git"
+    "url": "https://github.com/hossain-khan/trmnl-prayer-times.git"
   },
-  "homepage": "https://github.com/your-username/your-plugin-name",
+  "homepage": "https://github.com/hossain-khan/trmnl-prayer-times",
   "bugs": {
-    "url": "https://github.com/your-username/your-plugin-name/issues"
+    "url": "https://github.com/hossain-khan/trmnl-prayer-times/issues"
   },
   "scripts": {
     "validate": "echo 'No build step required for plugin templates'"

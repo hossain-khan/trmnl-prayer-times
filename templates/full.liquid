@@ -31,7 +31,7 @@
             <span class="value value--large lg:value--xlarge">{{ gregorian.day }}</span>
             <span class="title title--small lg:title--medium">{{ gregorian.month.en }}</span>
           </div>
-          {% if show_hijri %}
+          {% if show_hijri == "true" or show_hijri == true %}
           <div class="divider h--8 lg:h--10"></div>
           <div class="flex flex--col gap--xsmall">
             <span class="label label--small lg:label--medium">Hijri</span>
