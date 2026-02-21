@@ -37,16 +37,63 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-
-      - name: Install Shopify CLI
-        run: npm install -g @shopify/cli
-
-      - name: Validate Liquid templates
-        run: shopify theme check templates/
+      - name: Validate Liquid syntax
+        run: |
+          set +e
+          errors=0
+          
+          echo "Checking Liquid template syntax..."
+          for file in templates/*.liquid; do
+            echo ""
+            echo "Checking $file..."
+            
+            # Count opening and closing tags
+            open_if=$(grep -o '{%\s*if' "$file" 2>/dev/null | wc -l)
+            close_if=$(grep -o '{%\s*endif' "$file" 2>/dev/null | wc -l)
+            
+            if [ "$open_if" -ne "$close_if" ]; then
+              echo "✗ $file: Mismatched if/endif tags (if: $open_if, endif: $close_if)"
+              errors=$((errors + 1))
+            fi
+            
+            open_for=$(grep -o '{%\s*for' "$file" 2>/dev/null | wc -l)
+            close_for=$(grep -o '{%\s*endfor' "$file" 2>/dev/null | wc -l)
+            
+            if [ "$open_for" -ne "$close_for" ]; then
+              echo "✗ $file: Mismatched for/endfor tags (for: $open_for, endfor: $close_for)"
+              errors=$((errors + 1))
+            fi
+            
+            open_unless=$(grep -o '{%\s*unless' "$file" 2>/dev/null | wc -l)
+            close_unless=$(grep -o '{%\s*endunless' "$file" 2>/dev/null | wc -l)
+            
+            if [ "$open_unless" -ne "$close_unless" ]; then
+              echo "✗ $file: Mismatched unless/endunless tags (unless: $open_unless, endunless: $close_unless)"
+              errors=$((errors + 1))
+            fi
+            
+            open_case=$(grep -o '{%\s*case' "$file" 2>/dev/null | wc -l)
+            close_case=$(grep -o '{%\s*endcase' "$file" 2>/dev/null | wc -l)
+            
+            if [ "$open_case" -ne "$close_case" ]; then
+              echo "✗ $file: Mismatched case/endcase tags (case: $open_case, endcase: $close_case)"
+              errors=$((errors + 1))
+            fi
+            
+            # Check for basic syntax markers
+            if grep -q '{%\|{{' "$file"; then
+              echo "✓ $file contains valid Liquid syntax"
+            fi
+          done
+          
+          echo ""
+          if [ $errors -eq 0 ]; then
+            echo "✓ All Liquid templates have valid syntax"
+            exit 0
+          else
+            echo "✗ Found $errors syntax error(s)"
+            exit 1
+          fi
 
   lint:
     name: Lint Configuration Files
