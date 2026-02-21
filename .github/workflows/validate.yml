@@ -23,12 +23,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Install yamllint
+        run: sudo apt-get update && sudo apt-get install -y yamllint
+
       - name: Validate YAML syntax
-        uses: marocchino/yaml-validator@v1
-        with:
-          files: |
-            custom-fields.yml
-            settings.yml
+        run: |
+          yamllint custom-fields.yml settings.yml
 
   validate-liquid:
     name: Validate Liquid Templates
@@ -42,11 +42,8 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install theme-check
-        run: npm install --save-dev @shopify/theme-check-node
-
       - name: Validate Liquid templates
-        run: npx theme-check templates/ --print-json
+        run: npx -p @shopify/theme-check-node theme-check templates/
 
   lint:
     name: Lint Configuration Files
