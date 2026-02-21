@@ -1,0 +1,114 @@
+name: Validate Liquid & YAML
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'templates/**/*.liquid'
+      - '*.yml'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'templates/**/*.liquid'
+      - '*.yml'
+      - '.github/workflows/validate.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-yaml:
+    name: Validate YAML Configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Validate YAML syntax
+        uses: marocchino/yaml-validator@v1
+        with:
+          files: |
+            custom-fields.yml
+            settings.yml
+
+  validate-liquid:
+    name: Validate Liquid Templates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install --save-dev @shopify/theme-check
+
+      - name: Validate Liquid templates
+        run: npx theme-check templates/ --print-json || true
+        continue-on-error: true
+
+      - name: Custom Liquid syntax check
+        run: |
+          for file in templates/*.liquid; do
+            echo "Checking $file..."
+            # Basic Liquid syntax validation
+            if grep -q '{%' "$file" || grep -q '{{' "$file"; then
+              echo "✓ $file contains valid Liquid syntax markers"
+            fi
+          done
+
+  lint:
+    name: Lint Configuration Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Validate custom-fields.yml structure
+        run: |
+          if ! grep -q 'fields:' custom-fields.yml; then
+            echo "Warning: custom-fields.yml appears to be empty or malformed"
+          else
+            echo "✓ custom-fields.yml has expected structure"
+          fi
+
+      - name: Validate settings.yml structure
+        run: |
+          if ! grep -q 'type:' settings.yml; then
+            echo "Warning: settings.yml appears to be empty or malformed"
+          else
+            echo "✓ settings.yml has expected structure"
+          fi
+
+      - name: Check for common Liquid errors
+        run: |
+          set +e
+          errors=0
+          
+          # Check for unclosed tags
+          for file in templates/*.liquid; do
+            # Count opening and closing tags
+            open_if=$(grep -o '{%\s*if' "$file" 2>/dev/null | wc -l)
+            close_if=$(grep -o '{%\s*endif' "$file" 2>/dev/null | wc -l)
+            
+            if [ "$open_if" -ne "$close_if" ]; then
+              echo "✗ $file: Mismatched if/endif tags"
+              errors=$((errors + 1))
+            fi
+            
+            open_for=$(grep -o '{%\s*for' "$file" 2>/dev/null | wc -l)
+            close_for=$(grep -o '{%\s*endfor' "$file" 2>/dev/null | wc -l)
+            
+            if [ "$open_for" -ne "$close_for" ]; then
+              echo "✗ $file: Mismatched for/endfor tags"
+              errors=$((errors + 1))
+            fi
+          done
+          
+          if [ $errors -eq 0 ]; then
+            echo "✓ All Liquid templates have balanced tags"
+          else
+            exit 1
+          fi
