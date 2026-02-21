@@ -21,9 +21,10 @@ Display accurate Islamic prayer times on your TRMNL e-ink device or BYOD display
 ## 🚀 Install & Setup
 
 ### Step 1: Add Plugin
-1. Open [TRMNL App](https://app.trmnl.com)
-2. Search for "Islamic Prayer Times"
-3. Click "Add Plugin"
+1. Visit [TRMNL Plugins](https://trmnl.com/plugins)
+2. Search for "**Islamic Prayer Times**"
+3. Click **Install**
+4. Add to your [Playlist](https://trmnl.com/playlists)
 
 ### Step 2: Configure
 1. **Location**: Enter your city or address (e.g., "London, UK", "Paris, France", "New York, USA")
@@ -48,23 +49,6 @@ Done! Prayer times update daily automatically.
 | Half Vertical | Quadrant |
 |---|---|
 | ![Half Vertical](assets/demo/preview-half-vertical.png) | ![Quadrant](assets/demo/preview-quadrant.png) |
-
-## ❓ FAQ
-
-**Do I need an API key?**  
-No, completely free and no registration needed.
-
-**Which calculation method should I use?**  
-Muslim World League (MWL) is recommended and used globally. Pick the method that matches your mosque if different.
-
-**Can I change my location?**  
-Yes, anytime in TRMNL settings.
-
-**What if prayer times don't match my mosque?**  
-Try a different calculation method in settings that matches your mosque's times.
-
-**Does it work during Ramadan?**  
-Yes, times are correct and automatically adjusted for every day.
 
 ## 📄 License
 
