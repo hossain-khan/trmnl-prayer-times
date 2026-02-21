@@ -4,6 +4,8 @@
 
 Display accurate Islamic prayer times on your TRMNL e-ink device or BYOD display. Shows all 5 daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha) with optional Islamic calendar dates in beautiful, responsive layouts.
 
+![banner](assets/banner/prayer-times-og-banner.jpg)
+
 ## ✨ What You Get
 
 - **Accurate Prayer Times**: Updated daily from [Aladhan API](https://aladhan.com/)
