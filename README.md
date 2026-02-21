@@ -21,7 +21,7 @@ Display accurate Islamic prayer times on your TRMNL e-ink device or BYOD display
 ## 🚀 Install & Setup
 
 ### Step 1: Add Plugin
-1. Visit [TRMNL Plugins](https://trmnl.com/plugins)
+1. Visit [TRMNL Recipes](https://trmnl.com/recipes)
 2. Search for "**Islamic Prayer Times**"
 3. Click **Install**
 4. Add to your [Playlist](https://trmnl.com/playlists)
