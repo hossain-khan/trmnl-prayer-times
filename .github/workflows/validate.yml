@@ -42,8 +42,11 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli
+
       - name: Validate Liquid templates
-        run: npx -p @shopify/theme-check-node theme-check templates/
+        run: shopify theme check templates/
 
   lint:
     name: Lint Configuration Files
