@@ -28,7 +28,7 @@ jobs:
 
       - name: Validate YAML syntax
         run: |
-          yamllint custom-fields.yml settings.yml
+          yamllint -c .yamllint custom-fields.yml settings.yml
 
   validate-liquid:
     name: Validate Liquid Templates

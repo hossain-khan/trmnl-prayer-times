@@ -1,5 +1,5 @@
 # Prayer Times Plugin Configuration
-# 
+#
 # This file configures the Prayer Times plugin for TRMNL devices
 # No backend needed - TRMNL calls Aladhan API directly
 
@@ -35,7 +35,7 @@ version: "1.0.0"
 tap_action_url: "https://aladhan.com"
 
 # Developer Notes:
-# 
+#
 # ALADHAN TIMINGS BY ADDRESS ENDPOINT:
 # - Endpoint: /timingsByAddress/{date}
 # - address: User's location (configured via custom field)
